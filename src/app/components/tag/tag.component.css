@@ -1,9 +1,18 @@
 .tag-name {
   display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
   padding: 0.3rem;
 
   background-color: #999;
 
   border: 2px solid #ccc;
   border-radius: 0.5rem;
+}
+
+.btn-remove {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ccc;
 }
