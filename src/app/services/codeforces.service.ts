@@ -46,4 +46,14 @@ export class CodeforcesService {
     );
     return problems;
   }
+
+  async getProblemsByTags({ tags }: { tags: string[] }): Promise<Problem[]> {
+    const response = await fetch(
+      `${this.API_URL}/problemset.problems?tags=${tags.join(';')}`
+    );
+    const data = await response.json();
+    if (data.status !== 'OK') throw new Error('Codeforces API error');
+    const problems: Problem[] = data.result.problems;
+    return problems;
+  }
 }
