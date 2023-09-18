@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <a href="#" target="_blank">{{ id }}</a>
+  </td>
+  <td>
+    <a href="#" target="_blank">{{ name }}</a>
+    <div class="tags-problem">
+      <span *ngFor="let tag of tags"> {{ tag }} </span>
+    </div>
+  </td>
+  <td *ngIf="difficulty > -1">{{ difficulty }}</td>
+</tr>

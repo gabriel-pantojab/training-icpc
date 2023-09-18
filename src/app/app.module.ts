@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TagComponent } from './components/tag/tag.component';
+import { ProblemComponent } from './components/problem/problem.component';
 
 @NgModule({
-  declarations: [AppComponent, TagComponent],
+  declarations: [AppComponent, TagComponent, ProblemComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

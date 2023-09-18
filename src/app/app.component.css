@@ -73,3 +73,50 @@
 .btn-form:active {
   transform: scale(0.95);
 }
+
+.table-problems {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.name-problem {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.3rem;
+
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.name-problem-title {
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.id-problem,
+.difficulty-problem {
+  text-align: center;
+}
+
+tr {
+  border: 1px solid #ccc;
+}
+
+td,
+th {
+  padding: 0.5rem;
+}
+
+.tags-problem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tags-problem > span {
+  font-size: 0.8rem;
+  color: #888;
+}
