@@ -42,6 +42,20 @@ export class AppComponent {
       });
   }
 
+  getRandomProblem() {
+    this.problems = null;
+    const { minDifficulty, maxDifficulty } = this.filterForm.value;
+    this.codeforcesService
+      .getRandomProblem({
+        tags: this.tagList,
+        minDifficulty,
+        maxDifficulty,
+      })
+      .then((problem) => {
+        this.problems = [problem];
+      });
+  }
+
   removeTag(tag: string) {
     this.tagList = this.tagList.filter((t) => t !== tag);
   }

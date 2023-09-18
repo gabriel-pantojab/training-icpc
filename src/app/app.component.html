@@ -176,7 +176,13 @@
         </div>
 
         <button class="btn-form btn-filter">Filtrar</button>
-        <button class="btn-form btn-random-problem">Random Problem</button>
+        <button
+          type="button"
+          class="btn-form btn-random-problem"
+          (click)="getRandomProblem()"
+        >
+          Random Problem
+        </button>
       </form>
     </section>
 
