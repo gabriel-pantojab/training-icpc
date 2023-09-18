@@ -78,7 +78,7 @@
 
 .problems-container {
   width: 100%;
-  min-width: 300px;
+  min-width: 250px;
 }
 
 .table-problems {
@@ -109,7 +109,10 @@
 }
 
 tr {
+  width: 100%;
   border: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: 25% 45% 1fr;
 }
 
 td,
@@ -132,10 +135,14 @@ th {
   font-weight: bold;
 }
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 780px) {
   .main-container {
     align-items: flex-start;
     flex-direction: row;
+  }
+
+  tr {
+    grid-template-columns: 100px 1fr 100px;
   }
 
   .form-container {
