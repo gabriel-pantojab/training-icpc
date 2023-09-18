@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tag',
@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class TagComponent {
   @Input() name!: string;
+  @Output() removeEvent = new EventEmitter<string>();
+
+  removeTag(tag: string) {
+    this.removeEvent.emit(tag);
+  }
 }

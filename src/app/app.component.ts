@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'random-problem';
   tagList: string[] = [];
   filterForm: FormGroup;
+
   constructor(private codeforcesService: CodeforcesService) {
     this.filterForm = new FormGroup({
       minDifficulty: new FormControl(800),
@@ -26,4 +27,8 @@ export class AppComponent {
   }
 
   onSubmit(event: Event) {}
+
+  removeTag(tag: string) {
+    this.tagList = this.tagList.filter((t) => t !== tag);
+  }
 }

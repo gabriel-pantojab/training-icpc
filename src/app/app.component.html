@@ -31,7 +31,12 @@
         </div>
 
         <div class="list-tags">
-          <app-tag *ngFor="let tag of tagList" [name]="tag"> </app-tag>
+          <app-tag
+            *ngFor="let tag of tagList"
+            [name]="tag"
+            (removeEvent)="removeTag($event)"
+          >
+          </app-tag>
         </div>
 
         <div class="tags">
