@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-interface Problem {
+export interface Problem {
   contestId: number;
   problemsetName: string;
   index: string;

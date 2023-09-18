@@ -175,8 +175,23 @@
           </select>
         </div>
 
-        <button>Submit</button>
+        <button class="btn-form btn-filter">Filtrar</button>
+        <button class="btn-form btn-random-problem">Random Problem</button>
       </form>
+    </section>
+
+    <section class="problems-container">
+      <ng-template [ngIf]="problems && problems.length > 0">
+        <code *ngFor="let problem of problems">
+          <pre>
+            {{ problem | json }}
+          </pre>
+        </code>
+      </ng-template>
+      <div *ngIf="!problems" class="problems-container__loading">
+        Loading....
+      </div>
+      <div *ngIf="problems && problems.length === 0">No problems found</div>
     </section>
   </main>
 </div>

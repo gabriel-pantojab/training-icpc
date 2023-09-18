@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { CodeforcesService } from './services/codeforces.service';
+import { CodeforcesService, Problem } from './services/codeforces.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,7 @@ import { CodeforcesService } from './services/codeforces.service';
 export class AppComponent {
   title = 'random-problem';
   tagList: string[] = [];
+  problems: Problem[] | null = [];
   filterForm: FormGroup;
 
   constructor(private codeforcesService: CodeforcesService) {
@@ -26,7 +27,20 @@ export class AppComponent {
     });
   }
 
-  onSubmit(event: Event) {}
+  onSubmit(event: Event) {
+    event.preventDefault();
+    this.problems = null;
+    const { minDifficulty, maxDifficulty } = this.filterForm.value;
+    this.codeforcesService
+      .getProblemsByTagsAndDifficulty({
+        tags: this.tagList,
+        minDifficulty,
+        maxDifficulty,
+      })
+      .then((problems) => {
+        this.problems = problems;
+      });
+  }
 
   removeTag(tag: string) {
     this.tagList = this.tagList.filter((t) => t !== tag);
