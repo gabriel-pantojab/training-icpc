@@ -1,0 +1,9 @@
+.tag-name {
+  display: flex;
+  padding: 0.3rem;
+
+  background-color: #999;
+
+  border: 2px solid #ccc;
+  border-radius: 0.5rem;
+}
