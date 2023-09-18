@@ -30,11 +30,13 @@
           />
         </div>
 
-        <div class="list-tags"></div>
+        <div class="list-tags">
+          <app-tag *ngFor="let tag of tagList" [name]="tag"> </app-tag>
+        </div>
 
         <div class="tags">
           <label>Tags: </label>
-          <select id="tags" formControlName="tags">
+          <select id="tag" formControlName="tag">
             <option value=""></option>
             combine-tags-by-or
             <option value="combine-tags-by-or" title="*combine tags by OR">
