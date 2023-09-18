@@ -56,4 +56,28 @@ export class CodeforcesService {
     const problems: Problem[] = data.result.problems;
     return problems;
   }
+
+  async getRandomProblem({
+    tags,
+    minDifficulty,
+    maxDifficulty,
+  }: {
+    tags: string[];
+    minDifficulty?: number;
+    maxDifficulty?: number;
+  }): Promise<Problem> {
+    let problems: Problem[];
+    if (minDifficulty && maxDifficulty) {
+      problems = await this.getProblemsByTagsAndDifficulty({
+        tags,
+        minDifficulty,
+        maxDifficulty,
+      });
+    } else {
+      problems = await this.getProblemsByTags({
+        tags,
+      });
+    }
+    return problems[Math.floor(Math.random() * problems.length)];
+  }
 }
