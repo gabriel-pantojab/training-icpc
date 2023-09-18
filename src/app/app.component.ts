@@ -8,7 +8,7 @@ import { CodeforcesService, Problem } from './services/codeforces.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'random-problem';
+  title = 'Training ICPC';
   tagList: string[] = [];
   problems: Problem[] | null = [];
   filterForm: FormGroup;
