@@ -200,10 +200,16 @@
           <tbody>
             <tr *ngFor="let problem of problems">
               <td class="id-problem">
-                {{ problem.contestId + problem.index }}
+                <a
+                  target="_blank"
+                  href="https://codeforces.com/problemset/problem/{{
+                    problem.contestId
+                  }}/{{ problem.index }}"
+                  >{{ problem.contestId + problem.index }}</a
+                >
               </td>
               <td class="name-problem">
-                <div>{{ problem.name }}</div>
+                <div class="name-proble__content">{{ problem.name }}</div>
                 <div class="tags-problem">
                   <span *ngFor="let tag of problem.tags"> {{ tag }}, </span>
                 </div>
