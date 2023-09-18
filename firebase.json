@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/random-problem",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
