@@ -37,8 +37,14 @@ export class CodeforcesService {
     const response = await fetch(
       `${this.API_URL}/problemset.problems?tags=${tags.join(';')}`
     );
-    const data = await response.json();
-    if (data.status !== 'OK') throw new Error('Codeforces API error');
+    let data;
+    try {
+      data = await response.json();
+    } catch (error) {
+      throw new Error('Codeforces is temporarily unavailable');
+    }
+    if (data.status !== 'OK')
+      throw new Error('Codeforces is temporarily unavailable');
     const problems: Problem[] = data.result.problems.filter(
       (problem: Problem) =>
         problem.rating &&

@@ -72,6 +72,10 @@
   cursor: pointer;
 }
 
+.btn-form:hover {
+  background-color: #ccc;
+}
+
 .btn-form:active {
   transform: scale(0.95);
 }

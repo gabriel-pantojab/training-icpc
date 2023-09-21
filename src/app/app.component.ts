@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CodeforcesService, Problem } from './services/codeforces.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -27,35 +28,48 @@ export class AppComponent {
     });
   }
 
-  onSubmit(event: Event) {
+  async onSubmit(event: Event) {
     event.preventDefault();
     if (!this.filterForm.valid) return;
     this.problems = null;
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
-    this.codeforcesService
-      .getProblemsByTagsAndDifficulty({
-        tags: this.tagList,
-        minDifficulty,
-        maxDifficulty,
-      })
-      .then((problems) => {
-        this.problems = problems;
+    try {
+      const problems: Problem[] =
+        await this.codeforcesService.getProblemsByTagsAndDifficulty({
+          tags: this.tagList,
+          minDifficulty,
+          maxDifficulty,
+        });
+      this.problems = problems;
+    } catch (error: any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
       });
+      this.problems = [];
+    }
   }
 
-  getRandomProblem() {
+  async getRandomProblem() {
     if (!this.filterForm.valid) return;
     this.problems = null;
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
-    this.codeforcesService
-      .getRandomProblem({
+    try {
+      const problem: Problem = await this.codeforcesService.getRandomProblem({
         tags: this.tagList,
         minDifficulty,
         maxDifficulty,
-      })
-      .then((problem) => {
-        this.problems = [problem];
       });
+      this.problems = [problem];
+    } catch (error: any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      });
+      this.problems = [];
+    }
   }
 
   removeTag(tag: string) {
