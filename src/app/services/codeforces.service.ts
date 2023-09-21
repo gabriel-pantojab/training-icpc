@@ -33,6 +33,7 @@ export class CodeforcesService {
     minDifficulty: number;
     maxDifficulty: number;
   }): Promise<Problem[]> {
+    this.valiteDifficulty(minDifficulty, maxDifficulty);
     const response = await fetch(
       `${this.API_URL}/problemset.problems?tags=${tags.join(';')}`
     );
@@ -66,6 +67,8 @@ export class CodeforcesService {
     minDifficulty?: number;
     maxDifficulty?: number;
   }): Promise<Problem> {
+    if (minDifficulty && maxDifficulty)
+      this.valiteDifficulty(minDifficulty, maxDifficulty);
     let problems: Problem[];
     if (minDifficulty && maxDifficulty) {
       problems = await this.getProblemsByTagsAndDifficulty({
@@ -79,5 +82,14 @@ export class CodeforcesService {
       });
     }
     return problems[Math.floor(Math.random() * problems.length)];
+  }
+
+  valiteDifficulty(minDifficulty: number, maxDifficulty: number) {
+    if (minDifficulty < 800)
+      throw new Error('Min difficulty must be greater than 800');
+    if (maxDifficulty > 3500)
+      throw new Error('Max difficulty must be less than 3500');
+    if (minDifficulty > maxDifficulty)
+      throw new Error('Min difficulty must be less than max difficulty');
   }
 }

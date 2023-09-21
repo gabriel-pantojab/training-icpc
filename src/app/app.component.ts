@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private codeforcesService: CodeforcesService) {
     this.filterForm = new FormGroup({
       minDifficulty: new FormControl(800),
-      maxDifficulty: new FormControl(3600),
+      maxDifficulty: new FormControl(3500),
       tag: new FormControl(''),
     });
     this.filterForm.get('tag')?.valueChanges.subscribe((value) => {
