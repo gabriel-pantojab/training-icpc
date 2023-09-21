@@ -135,6 +135,45 @@ th {
   font-weight: bold;
 }
 
+.difficulty {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.max-min-difficulty {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.minDifficulty,
+.maxDifficulty {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+}
+
+.minDifficulty > input,
+.maxDifficulty > input {
+  padding: 0.3rem;
+  outline: none;
+  margin-bottom: 0.3rem;
+}
+
+.error-difficulty > input {
+  border-color: red;
+}
+
+.error-difficulty-message {
+  position: absolute;
+  top: 100%;
+  color: red;
+  font-size: 0.8rem;
+}
+
 @media screen and (min-width: 780px) {
   .main-container {
     align-items: flex-start;

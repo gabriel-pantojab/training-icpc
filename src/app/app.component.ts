@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CodeforcesService, Problem } from './services/codeforces.service';
 
 @Component({
@@ -15,8 +15,8 @@ export class AppComponent {
 
   constructor(private codeforcesService: CodeforcesService) {
     this.filterForm = new FormGroup({
-      minDifficulty: new FormControl(800),
-      maxDifficulty: new FormControl(3500),
+      minDifficulty: new FormControl(800, Validators.min(800)),
+      maxDifficulty: new FormControl(3500, Validators.max(3500)),
       tag: new FormControl(''),
     });
     this.filterForm.get('tag')?.valueChanges.subscribe((value) => {
@@ -29,6 +29,7 @@ export class AppComponent {
 
   onSubmit(event: Event) {
     event.preventDefault();
+    if (!this.filterForm.valid) return;
     this.problems = null;
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     this.codeforcesService
@@ -43,6 +44,7 @@ export class AppComponent {
   }
 
   getRandomProblem() {
+    if (!this.filterForm.valid) return;
     this.problems = null;
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     this.codeforcesService

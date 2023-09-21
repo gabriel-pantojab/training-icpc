@@ -13,21 +13,53 @@
       >
         <div class="difficulty">
           <label> Difficulty: </label>
-          <input
-            id="min-difficulty"
-            type="number"
-            formControlName="minDifficulty"
-            min="800"
-            max="3600"
-          />
-          -
-          <input
-            id="max-difficulty"
-            type="number"
-            formControlName="maxDifficulty"
-            min="800"
-            max="3600"
-          />
+          <div class="max-min-difficulty">
+            <div
+              class="minDifficulty"
+              [ngClass]="{
+                'error-difficulty': filterForm
+                  .get('minDifficulty')
+                  ?.hasError('min')
+              }"
+            >
+              <input
+                id="min-difficulty"
+                type="number"
+                formControlName="minDifficulty"
+                min="800"
+                max="3600"
+              />
+              <span
+                *ngIf="filterForm.get('minDifficulty')?.hasError('min')"
+                class="error-difficulty-message"
+              >
+                Min value is 800
+              </span>
+            </div>
+            -
+            <div
+              class="maxDifficulty"
+              [ngClass]="{
+                'error-difficulty': filterForm
+                  .get('maxDifficulty')
+                  ?.hasError('max')
+              }"
+            >
+              <input
+                id="max-difficulty"
+                type="number"
+                formControlName="maxDifficulty"
+                min="800"
+                max="3500"
+              />
+              <span
+                *ngIf="filterForm.get('maxDifficulty')?.hasError('max')"
+                class="error-difficulty-message"
+              >
+                Max value is 3600
+              </span>
+            </div>
+          </div>
         </div>
 
         <div class="list-tags">
@@ -42,11 +74,6 @@
         <div class="tags">
           <label>Tags: </label>
           <select id="tag" formControlName="tag">
-            <option value=""></option>
-            combine-tags-by-or
-            <option value="combine-tags-by-or" title="*combine tags by OR">
-              *combine tags by OR
-            </option>
             <option value="2-sat" title="2-satisfiability">2-sat</option>
             <option value="binary search" title="Binary search">
               binary search
