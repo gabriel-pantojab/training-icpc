@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TagComponent } from './components/tag/tag.component';
 import { ProblemComponent } from './components/problem/problem.component';
+import { FilterCodeforcesComponent } from './components/filter-codeforces/filter-codeforces.component';
 
 @NgModule({
-  declarations: [AppComponent, TagComponent, ProblemComponent],
+  declarations: [AppComponent, TagComponent, ProblemComponent, FilterCodeforcesComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
