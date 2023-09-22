@@ -47,7 +47,8 @@
         </table>
       </ng-template>
       <div *ngIf="!problems" class="problems-container__loading">
-        Loading....
+        <app-loading></app-loading>
+        <p>Searching for problems...</p>
       </div>
       <div
         *ngIf="problems && problems.length === 0"
