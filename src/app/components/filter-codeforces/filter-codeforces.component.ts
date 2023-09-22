@@ -36,6 +36,7 @@ export class FilterCodeforcesComponent {
   async onSubmit(event: Event) {
     event.preventDefault();
     if (!this.filterForm.valid) return;
+    this.emitter.emit(null);
     this.problems = null;
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     try {
@@ -59,6 +60,7 @@ export class FilterCodeforcesComponent {
 
   async getRandomProblem() {
     if (!this.filterForm.valid) return;
+    this.emitter.emit(null);
     this.problems = null;
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     try {

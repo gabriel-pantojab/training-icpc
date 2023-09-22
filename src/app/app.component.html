@@ -49,7 +49,12 @@
       <div *ngIf="!problems" class="problems-container__loading">
         Loading....
       </div>
-      <div *ngIf="problems && problems.length === 0">No problems found</div>
+      <div
+        *ngIf="problems && problems.length === 0"
+        class="problems-container__no-problems"
+      >
+        No problems found
+      </div>
     </section>
   </main>
 </div>
