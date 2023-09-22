@@ -1,4 +1,5 @@
 .loading {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,8 +16,8 @@
 .pl2__b,
 .pl2__c {
   border-radius: 50%;
-  width: 0.7em;
-  height: 0.7em;
+  width: 0.4em;
+  height: 0.4em;
   transform-origin: 50% 100%;
 }
 
@@ -44,8 +45,8 @@
 .pl4__b,
 .pl4__c,
 .pl4__d {
-  width: 0.7em;
-  height: 0.7em;
+  width: 0.4em;
+  height: 0.4em;
 }
 
 .pl3__a,
@@ -72,9 +73,11 @@
 .pl3,
 .pl4 {
   display: flex;
-  margin: 1.5em;
-  width: 5em;
-  height: 5em;
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+  width: 3em;
+  height: 4em;
+  max-width: 100%;
 }
 .pl1__a,
 .pl2__a,
