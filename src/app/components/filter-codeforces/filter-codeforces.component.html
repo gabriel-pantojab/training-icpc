@@ -54,7 +54,7 @@
 
     <div class="list-tags">
       <app-tag
-        *ngFor="let tag of tagList"
+        *ngFor="let tag of tagList()"
         [name]="tag"
         (removeEvent)="removeTag($event)"
       >

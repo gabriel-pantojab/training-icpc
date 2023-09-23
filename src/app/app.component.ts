@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Problem } from './services/codeforces.service';
 
 @Component({
@@ -8,11 +8,11 @@ import { Problem } from './services/codeforces.service';
 })
 export class AppComponent {
   title = 'Training ICPC';
-  problems: Problem[] | null = [];
+  problems = signal<Problem[] | null>([]);
 
   constructor() {}
 
   setProblems(problems: Problem[] | null) {
-    this.problems = problems;
+    this.problems.set(problems);
   }
 }

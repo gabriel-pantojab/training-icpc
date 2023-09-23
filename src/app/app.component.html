@@ -9,7 +9,7 @@
     ></app-filter-codeforces>
 
     <section class="problems-container">
-      <ng-template [ngIf]="problems && problems.length > 0">
+      <ng-template [ngIf]="problems() && problems()?.length">
         <table class="table-problems">
           <thead>
             <tr>
@@ -21,23 +21,22 @@
 
           <tbody>
             <app-problem
-              *ngFor="let problem of problems"
+              *ngFor="let problem of problems()"
               [contestId]="problem.contestId + ''"
               [id]="problem.index"
               [name]="problem.name"
               [tags]="problem.tags"
               [difficulty]="problem.rating ?? -1"
             ></app-problem>
-            <!-- </tr> -->
           </tbody>
         </table>
       </ng-template>
-      <div *ngIf="!problems" class="problems-container__loading">
+      <div *ngIf="!problems()" class="problems-container__loading">
         <app-loading></app-loading>
         <p>Searching for problems...</p>
       </div>
       <div
-        *ngIf="problems && problems.length === 0"
+        *ngIf="problems() && problems()?.length === 0"
         class="problems-container__no-problems"
       >
         No problems found

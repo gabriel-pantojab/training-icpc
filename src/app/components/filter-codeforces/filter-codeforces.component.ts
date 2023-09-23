@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CodeforcesService,
@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./filter-codeforces.component.css'],
 })
 export class FilterCodeforcesComponent {
-  tagList: string[] = [];
-  problems: Problem[] | null = [];
+  tagList = signal<string[]>([]);
+  problems = signal<Problem[] | null>(null);
   filterForm: FormGroup;
 
   @Output() emitter = new EventEmitter<Problem[] | null>();
@@ -26,8 +26,8 @@ export class FilterCodeforcesComponent {
     });
 
     this.filterForm.get('tag')?.valueChanges.subscribe((value) => {
-      if (value && !this.tagList.includes(value)) {
-        this.tagList.push(value);
+      if (value && !this.tagList().includes(value)) {
+        this.tagList.update((list) => [...list, value]);
         this.filterForm.get('tag')?.setValue('');
       }
     });
@@ -37,51 +37,51 @@ export class FilterCodeforcesComponent {
     event.preventDefault();
     if (!this.filterForm.valid) return;
     this.emitter.emit(null);
-    this.problems = null;
+    this.problems.set(null);
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     try {
       const problems: Problem[] =
         await this.codeforcesService.getProblemsByTagsAndDifficulty({
-          tags: this.tagList,
+          tags: this.tagList(),
           minDifficulty,
           maxDifficulty,
         });
-      this.problems = problems;
+      this.problems.set(problems);
     } catch (error: any) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: error,
       });
-      this.problems = [];
+      this.problems.set([]);
     }
-    this.emitter.emit(this.problems);
+    this.emitter.emit(this.problems());
   }
 
   async getRandomProblem() {
     if (!this.filterForm.valid) return;
     this.emitter.emit(null);
-    this.problems = null;
+    this.problems.set(null);
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     try {
       const problem: Problem = await this.codeforcesService.getRandomProblem({
-        tags: this.tagList,
+        tags: this.tagList(),
         minDifficulty,
         maxDifficulty,
       });
-      this.problems = [problem];
+      this.problems.set([problem]);
     } catch (error: any) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: error,
       });
-      this.problems = [];
+      this.problems.set([]);
     }
-    this.emitter.emit(this.problems);
+    this.emitter.emit(this.problems());
   }
 
   removeTag(tag: string) {
-    this.tagList = this.tagList.filter((t) => t !== tag);
+    this.tagList.update((list) => list.filter((t) => t !== tag));
   }
 }
