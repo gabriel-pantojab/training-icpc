@@ -59,6 +59,7 @@
 }
 
 .difficulty {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -66,6 +67,7 @@
 }
 
 .max-min-difficulty {
+  width: 100%;
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -73,10 +75,10 @@
 
 .minDifficulty,
 .maxDifficulty {
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-inline: 1rem;
 }
 
 .minDifficulty > input,

@@ -1,12 +1,14 @@
-<tr>
-  <td>
-    <a href="#" target="_blank">{{ id }}</a>
+<tr class="problem">
+  <td class="id-problem">
+    <a href="{{ link + '/' + contestId + '/' + id }}" target="_blank">{{
+      contestId + id
+    }}</a>
   </td>
-  <td>
-    <a href="#" target="_blank">{{ name }}</a>
+  <td class="name-problem">
+    <div class="name-proble__content">{{ name }}</div>
     <div class="tags-problem">
-      <span *ngFor="let tag of tags"> {{ tag }} </span>
+      <span *ngFor="let tag of tags"> {{ tag }}, </span>
     </div>
   </td>
-  <td *ngIf="difficulty > -1">{{ difficulty }}</td>
+  <td *ngIf="difficulty > -1" class="difficulty-problem">{{ difficulty }}</td>
 </tr>

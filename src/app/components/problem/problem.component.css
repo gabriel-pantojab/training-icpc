@@ -1,0 +1,50 @@
+.problem {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: 25% 45% 1fr;
+}
+
+td,
+th {
+  padding: 0.5rem;
+}
+
+.tags-problem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tags-problem > span {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.name-proble__content {
+  font-weight: bold;
+}
+
+.name-problem {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.3rem;
+
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.id-problem,
+.difficulty-problem {
+  text-align: center;
+}
+
+@media screen and (min-width: 780px) {
+  .problem {
+    grid-template-columns: 100px 1fr 100px;
+  }
+}

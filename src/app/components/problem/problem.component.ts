@@ -10,5 +10,6 @@ export class ProblemComponent {
   @Input() difficulty!: number;
   @Input() tags!: string[];
   @Input() id!: string;
-  link = `https://codeforces.com/problemset/problem/${this.id}`;
+  @Input() contestId!: string;
+  link = 'https://codeforces.com/problemset/problem/';
 }
