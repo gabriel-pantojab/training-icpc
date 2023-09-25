@@ -30,7 +30,8 @@ th {
   width: 100%;
 
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   gap: 0.3rem;
 
@@ -46,5 +47,11 @@ th {
 @media screen and (min-width: 780px) {
   .problem {
     grid-template-columns: 100px 1fr 100px;
+  }
+
+  .name-problem {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }
