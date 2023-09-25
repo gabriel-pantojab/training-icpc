@@ -76,6 +76,34 @@ th {
   align-items: center;
 }
 
+.pagination-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1rem 0 0 0;
+  gap: 1rem;
+}
+
+.pagination-container__button {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.pagination-container__button:active {
+  transform: scale(0.9);
+}
+.pagination-container__button:hover {
+  background-color: #ccc;
+}
+
+.pagination-container__page {
+  font-size: 0.8rem;
+}
+
 @media screen and (min-width: 780px) {
   .main-container {
     align-items: flex-start;

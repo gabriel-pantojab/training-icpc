@@ -46,15 +46,25 @@
         *ngIf="renderProblems() && renderProblems()?.length && countPages() > 1"
         class="pagination-container"
       >
-        <button (click)="prevPage()">Previous</button>
         <button
+          class="pagination-container__button"
+          (click)="prevPage()"
+          [disabled]="page() === 1"
+        >
+          Previous
+        </button>
+        <button
+          class="pagination-container__button"
           *ngIf="renderProblems() && renderProblems()?.length"
           (click)="nextPage()"
+          [disabled]="page() === countPages()"
         >
           Next
         </button>
 
-        <p>Page {{ page() }} of {{ countPages() }}</p>
+        <p class="pagination-container__page">
+          Page {{ page() }} of {{ countPages() }}
+        </p>
       </section>
     </section>
   </main>
