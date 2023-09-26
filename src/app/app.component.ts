@@ -1,12 +1,12 @@
-import { Component, signal, computed } from '@angular/core';
-import { Problem } from './services/codeforces.service';
+import { Component, signal, computed, OnInit } from '@angular/core';
+import { CodeforcesService, Problem } from './services/codeforces.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Training ICPC';
   problems = signal<Problem[] | null>([]);
   renderProblems = computed<Problem[] | null>(() => {
@@ -20,7 +20,22 @@ export class AppComponent {
   countPages = signal<number>(0);
   page = signal<number>(1);
 
-  constructor() {}
+  constructor(private codeforcesService: CodeforcesService) {}
+
+  ngOnInit() {
+    this.loadDefaultProblems();
+  }
+
+  async loadDefaultProblems() {
+    this.setProblems(null);
+    const problems =
+      await this.codeforcesService.getProblemsByTagsAndDifficulty({
+        tags: [],
+        minDifficulty: 800,
+        maxDifficulty: 3500,
+      });
+    this.setProblems(problems);
+  }
 
   setProblems(problems: Problem[] | null) {
     this.problems.set(problems);
