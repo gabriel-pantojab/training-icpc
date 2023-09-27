@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Problem } from '../services/codeforces.service';
+import { Problem } from '../models/model';
 
 export const init = createAction('[My Problems Page] Init');
 

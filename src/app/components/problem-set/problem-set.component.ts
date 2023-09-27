@@ -1,8 +1,6 @@
 import { Component, OnInit, computed, signal } from '@angular/core';
-import {
-  CodeforcesService,
-  Problem,
-} from 'src/app/services/codeforces.service';
+import { ProblemAPI } from 'src/app/models/model';
+import { CodeforcesService } from 'src/app/services/codeforces.service';
 
 @Component({
   selector: 'app-problem-set',
@@ -11,8 +9,8 @@ import {
 })
 export class ProblemSetComponent implements OnInit {
   title = 'Problem Set';
-  problems = signal<Problem[] | null>([]);
-  renderProblems = computed<Problem[] | null>(() => {
+  problems = signal<ProblemAPI[] | null>([]);
+  renderProblems = computed<ProblemAPI[] | null>(() => {
     const problems = this.problems();
     if (!problems) return null;
     const page = this.page();
@@ -40,7 +38,7 @@ export class ProblemSetComponent implements OnInit {
     this.setProblems(problems);
   }
 
-  setProblems(problems: Problem[] | null) {
+  setProblems(problems: ProblemAPI[] | null) {
     this.problems.set(problems);
     if (problems) {
       this.countPages.set(Math.ceil(problems.length / 100));

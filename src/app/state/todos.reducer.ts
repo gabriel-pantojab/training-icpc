@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { Problem } from '../services/codeforces.service';
 import { TodosPageActions } from '.';
+import { Problem } from '../models/model';
 
 export interface TodosState {
   problems: Problem[];
@@ -26,9 +26,7 @@ export const todosReducer = createReducer(
     return {
       ...currentState,
       problems: currentState.problems.filter((problem) => {
-        const id1 = problem.contestId + problem.index;
-        const id2 = problemR.contestId + problemR.index;
-        return id1 !== id2;
+        return problem.id !== problemR.id;
       }),
     };
   })

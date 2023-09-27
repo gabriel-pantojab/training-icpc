@@ -1,20 +1,5 @@
 import { Injectable } from '@angular/core';
-
-export interface Problem {
-  contestId: number;
-  problemsetName: string;
-  index: string;
-  name: string;
-  type: ProblemType;
-  points: number;
-  rating?: number;
-  tags: string[];
-}
-
-enum ProblemType {
-  PROGRAMMING = 'PROGRAMMING',
-  QUESTION = 'QUESTION',
-}
+import { ProblemAPI } from '../models/model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +17,7 @@ export class CodeforcesService {
     tags: string[];
     minDifficulty: number;
     maxDifficulty: number;
-  }): Promise<Problem[]> {
+  }): Promise<ProblemAPI[]> {
     this.valiteDifficulty(minDifficulty, maxDifficulty);
     const response = await fetch(
       `${this.API_URL}/problemset.problems?tags=${tags.join(';')}`
@@ -45,8 +30,8 @@ export class CodeforcesService {
     }
     if (data.status !== 'OK')
       throw new Error('Codeforces is temporarily unavailable');
-    const problems: Problem[] = data.result.problems.filter(
-      (problem: Problem) =>
+    const problems: ProblemAPI[] = data.result.problems.filter(
+      (problem: ProblemAPI) =>
         problem.rating &&
         problem.rating >= minDifficulty &&
         problem.rating <= maxDifficulty
@@ -54,13 +39,13 @@ export class CodeforcesService {
     return problems;
   }
 
-  async getProblemsByTags({ tags }: { tags: string[] }): Promise<Problem[]> {
+  async getProblemsByTags({ tags }: { tags: string[] }): Promise<ProblemAPI[]> {
     const response = await fetch(
       `${this.API_URL}/problemset.problems?tags=${tags.join(';')}`
     );
     const data = await response.json();
     if (data.status !== 'OK') throw new Error('Codeforces API error');
-    const problems: Problem[] = data.result.problems;
+    const problems: ProblemAPI[] = data.result.problems;
     return problems;
   }
 
@@ -72,10 +57,10 @@ export class CodeforcesService {
     tags: string[];
     minDifficulty?: number;
     maxDifficulty?: number;
-  }): Promise<Problem> {
+  }): Promise<ProblemAPI> {
     if (minDifficulty && maxDifficulty)
       this.valiteDifficulty(minDifficulty, maxDifficulty);
-    let problems: Problem[];
+    let problems: ProblemAPI[];
     if (minDifficulty && maxDifficulty) {
       problems = await this.getProblemsByTagsAndDifficulty({
         tags,

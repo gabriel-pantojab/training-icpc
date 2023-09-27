@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  CodeforcesService,
-  Problem,
-} from 'src/app/services/codeforces.service';
+import { ProblemAPI } from 'src/app/models/model';
+import { CodeforcesService } from 'src/app/services/codeforces.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,10 +11,10 @@ import Swal from 'sweetalert2';
 })
 export class FilterCodeforcesComponent {
   tagList = signal<string[]>([]);
-  problems = signal<Problem[] | null>(null);
+  problems = signal<ProblemAPI[] | null>(null);
   filterForm: FormGroup;
 
-  @Output() emitter = new EventEmitter<Problem[] | null>();
+  @Output() emitter = new EventEmitter<ProblemAPI[] | null>();
 
   constructor(private codeforcesService: CodeforcesService) {
     this.filterForm = new FormGroup({
@@ -40,7 +38,7 @@ export class FilterCodeforcesComponent {
     this.problems.set(null);
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     try {
-      const problems: Problem[] =
+      const problems: ProblemAPI[] =
         await this.codeforcesService.getProblemsByTagsAndDifficulty({
           tags: this.tagList(),
           minDifficulty,
@@ -64,11 +62,13 @@ export class FilterCodeforcesComponent {
     this.problems.set(null);
     const { minDifficulty, maxDifficulty } = this.filterForm.value;
     try {
-      const problem: Problem = await this.codeforcesService.getRandomProblem({
-        tags: this.tagList(),
-        minDifficulty,
-        maxDifficulty,
-      });
+      const problem: ProblemAPI = await this.codeforcesService.getRandomProblem(
+        {
+          tags: this.tagList(),
+          minDifficulty,
+          maxDifficulty,
+        }
+      );
       this.problems.set([problem]);
     } catch (error: any) {
       Swal.fire({
