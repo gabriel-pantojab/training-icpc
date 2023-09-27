@@ -10,13 +10,13 @@ import { FilterCodeforcesComponent } from './components/filter-codeforces/filter
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ProblemSetComponent } from './components/problem-set/problem-set.component';
 
 const routes: Routes = [
   {
     path: '',
-  },
-  {
-    path: '/my-problems',
+    component: ProblemSetComponent,
+    title: 'ProblemSet',
   },
 ];
 
@@ -28,6 +28,7 @@ const routes: Routes = [
     FilterCodeforcesComponent,
     LoadingComponent,
     NavbarComponent,
+    ProblemSetComponent,
   ],
   imports: [
     BrowserModule,
