@@ -1,6 +1,14 @@
 <nav class="navbar">
   <ul class="navbar__list">
-    <li class="navbar__list-item">ProblemSet</li>
-    <li class="navbar__list-item">My Problems</li>
+    <li
+      class="navbar__list-item"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a class="navbar__list-item-link" routerLink="/">ProblemSet</a>
+    </li>
+    <li class="navbar__list-item" routerLinkActive="active">
+      <a class="navbar__list-item-link" routerLink="/my-problems">MyProblems</a>
+    </li>
   </ul>
 </nav>
