@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProblemSetComponent } from './components/problem-set/problem-set.component';
 import { MyProblemsComponent } from './components/my-problems/my-problems.component';
+import { StoreModule } from '@ngrx/store';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     AppRoutingModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],
