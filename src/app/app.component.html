@@ -3,6 +3,8 @@
     <h1 class="app-title">{{ title }}</h1>
   </header>
 
+  <app-navbar></app-navbar>
+
   <main class="main-container">
     <app-filter-codeforces
       (emitter)="setProblems($event)"

@@ -8,9 +8,10 @@ import { TagComponent } from './components/tag/tag.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { FilterCodeforcesComponent } from './components/filter-codeforces/filter-codeforces.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, TagComponent, ProblemComponent, FilterCodeforcesComponent, LoadingComponent],
+  declarations: [AppComponent, TagComponent, ProblemComponent, FilterCodeforcesComponent, LoadingComponent, NavbarComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
