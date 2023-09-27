@@ -11,12 +11,18 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProblemSetComponent } from './components/problem-set/problem-set.component';
+import { MyProblemsComponent } from './components/my-problems/my-problems.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ProblemSetComponent,
     title: 'ProblemSet',
+  },
+  {
+    path: 'my-problems',
+    component: MyProblemsComponent,
+    title: 'MyProblems',
   },
 ];
 
@@ -29,6 +35,7 @@ const routes: Routes = [
     LoadingComponent,
     NavbarComponent,
     ProblemSetComponent,
+    MyProblemsComponent,
   ],
   imports: [
     BrowserModule,
