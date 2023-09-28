@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { TodosPageActions } from '.';
-import { Problem } from '../models/model';
+import { Problem, ProblemStatus } from '../models/model';
 
 export interface TodosState {
   problems: Problem[];
@@ -29,5 +29,21 @@ export const todosReducer = createReducer(
         return problem.id !== problemR.id;
       }),
     };
+  }),
+  on(TodosPageActions.markAsAccepted, (currentState, action) => {
+    let temp = { ...currentState };
+    const index = temp.problems.findIndex((problem) => {
+      return problem.id === action.problem.id;
+    });
+    temp.problems[index].status = ProblemStatus.ACCEPTED;
+    return temp;
+  }),
+  on(TodosPageActions.markAsPending, (currentState, action) => {
+    let temp = { ...currentState };
+    const index = temp.problems.findIndex((problem) => {
+      return problem.id === action.problem.id;
+    });
+    temp.problems[index].status = ProblemStatus.PENDING;
+    return temp;
   })
 );
