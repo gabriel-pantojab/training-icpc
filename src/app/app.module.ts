@@ -13,7 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProblemSetComponent } from './components/problem-set/problem-set.component';
 import { MyProblemsComponent } from './components/my-problems/my-problems.component';
 import { StoreModule } from '@ngrx/store';
-import { todosReducer } from './state';
+import { problemSetReducer, todosReducer } from './state';
 
 const routes: Routes = [
   {
@@ -46,6 +46,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     StoreModule.forRoot({
       todosState: todosReducer,
+      problemSet: problemSetReducer,
     }),
   ],
   providers: [],

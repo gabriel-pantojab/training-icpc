@@ -9,6 +9,5 @@ export const updateProblems = createAction(
 );
 
 export const updateProblemsRender = createAction(
-  '[Main Page] Update Problems Render',
-  props<{ problemsRender: ProblemAPI[] }>()
+  '[Main Page] Update Problems Render'
 );
