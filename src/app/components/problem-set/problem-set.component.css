@@ -37,11 +37,6 @@
   border-left: 1px solid #ccc;
 }
 
-.id-problem,
-.difficulty-problem {
-  text-align: center;
-}
-
 tr {
   width: 100%;
   max-width: 100%;
@@ -52,7 +47,7 @@ tr {
 
 td,
 th {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 th {

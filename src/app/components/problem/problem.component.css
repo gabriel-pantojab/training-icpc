@@ -20,6 +20,7 @@ th {
 .tags-problem > span {
   font-size: 0.8rem;
   color: #888;
+  overflow-wrap: anywhere;
 }
 
 .name-proble__content {
@@ -35,6 +36,8 @@ th {
   justify-content: space-between;
   gap: 0.3rem;
 
+  overflow-wrap: break-word;
+
   border-right: 1px solid #ccc;
   border-left: 1px solid #ccc;
 }
@@ -42,6 +45,7 @@ th {
 .id-problem,
 .difficulty-problem {
   text-align: center;
+  padding: 0.5rem 0;
 }
 
 @media screen and (min-width: 780px) {
