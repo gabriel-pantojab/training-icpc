@@ -9,26 +9,16 @@
 
   <section class="problems-container">
     <ng-template [ngIf]="renderProblems() && renderProblems()?.length">
-      <table class="table-problems">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th class="name-problem-title">Name</th>
-            <th>Difficulty</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <app-problem
-            *ngFor="let problem of renderProblems()"
-            [contestId]="problem.contestId + ''"
-            [id]="problem.index"
-            [name]="problem.name"
-            [tags]="problem.tags"
-            [difficulty]="problem.rating ?? -1"
-          ></app-problem>
-        </tbody>
-      </table>
+      <ul class="problem-list">
+        <app-problem
+          *ngFor="let problem of renderProblems()"
+          [contestId]="problem.contestId + ''"
+          [id]="problem.index"
+          [name]="problem.name"
+          [tags]="problem.tags"
+          [difficulty]="problem.rating ?? -1"
+        ></app-problem>
+      </ul>
     </ng-template>
     <div *ngIf="!renderProblems()" class="problems-container__loading">
       <app-loading></app-loading>

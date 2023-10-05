@@ -92,6 +92,13 @@ th {
   font-size: 0.8rem;
 }
 
+.problem-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 @media screen and (min-width: 780px) {
   .main-container {
     align-items: flex-start;
