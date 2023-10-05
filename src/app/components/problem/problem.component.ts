@@ -56,7 +56,7 @@ export class ProblemComponent implements OnInit {
   removeProblem() {
     this.store.dispatch(
       TodosPageActions.removeProblem({
-        id: this.id,
+        id: this.contestId + this.id,
       })
     );
   }
