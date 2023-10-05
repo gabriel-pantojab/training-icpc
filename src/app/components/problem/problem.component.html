@@ -1,14 +1,24 @@
-<tr class="problem">
-  <td class="id-problem">
-    <a href="{{ link + '/' + contestId + '/' + id }}" target="_blank">{{
-      contestId + id
-    }}</a>
-  </td>
-  <td class="name-problem">
-    <div class="name-proble__content">{{ name }}</div>
-    <div class="tags-problem">
-      <span *ngFor="let tag of tags"> {{ tag }}, </span>
-    </div>
-  </td>
-  <td *ngIf="difficulty > -1" class="difficulty-problem">{{ difficulty }}</td>
-</tr>
+<li class="problem-item">
+  <article class="problem">
+    <header class="problem-header">
+      <div class="problem-id-container">
+        <a
+          href="{{ link + '/' + contestId + '/' + id }}"
+          target="_blank"
+          class="problem-link"
+          >{{ contestId + id }}</a
+        >
+      </div>
+      <div class="problem-name-container">
+        <h3 class="problem-name">{{ name }}</h3>
+      </div>
+      <div class="problem-add"><button class="btn-add">Agregar</button></div>
+    </header>
+    <section class="problem-content">
+      <p class="problem-difficulty">Difficulty: {{ difficulty }}</p>
+      <div class="tags-problem">
+        <span *ngFor="let tag of tags"> {{ tag }}, </span>
+      </div>
+    </section>
+  </article>
+</li>
