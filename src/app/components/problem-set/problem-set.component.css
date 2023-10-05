@@ -26,34 +26,6 @@
   border-radius: 0.5rem;
 }
 
-.table-problems {
-  width: 100%;
-  border-collapse: collapse;
-  display: contents;
-}
-
-.name-problem-title {
-  border-right: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-}
-
-tr {
-  width: 100%;
-  max-width: 100%;
-  border: 1px solid #ccc;
-  display: grid;
-  grid-template-columns: 25% 45% 1fr;
-}
-
-td,
-th {
-  padding: 0.5rem 0;
-}
-
-th {
-  font-size: 0.8rem;
-}
-
 .problems-container__loading,
 .problems-container__no-problems {
   width: 100%;
@@ -105,16 +77,8 @@ th {
     flex-direction: row;
   }
 
-  tr {
-    grid-template-columns: 100px 1fr 100px;
-  }
-
   .form-container {
     margin: 0;
     width: 100%;
-  }
-
-  th > td {
-    font-size: 0.8rem;
   }
 }
