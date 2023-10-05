@@ -8,10 +8,15 @@
   ></app-filter-codeforces>
 
   <section class="problems-container">
-    <ng-template [ngIf]="renderProblems() && renderProblems()?.length">
+    <ng-template
+      [ngIf]="
+        problemSetService.renderProblems() &&
+        problemSetService.renderProblems()?.length
+      "
+    >
       <ul class="problem-list">
         <app-problem
-          *ngFor="let problem of renderProblems()"
+          *ngFor="let problem of problemSetService.renderProblems()"
           [contestId]="problem.contestId + ''"
           [id]="problem.index"
           [name]="problem.name"
@@ -20,39 +25,53 @@
         ></app-problem>
       </ul>
     </ng-template>
-    <div *ngIf="!renderProblems()" class="problems-container__loading">
+    <div
+      *ngIf="!problemSetService.renderProblems()"
+      class="problems-container__loading"
+    >
       <app-loading></app-loading>
       <p>Searching for problems...</p>
     </div>
     <div
-      *ngIf="renderProblems() && renderProblems()?.length === 0"
+      *ngIf="
+        problemSetService.renderProblems() &&
+        problemSetService.renderProblems()?.length === 0
+      "
       class="problems-container__no-problems"
     >
       No problems found
     </div>
 
     <section
-      *ngIf="renderProblems() && renderProblems()?.length && countPages() > 1"
+      *ngIf="
+        problemSetService.renderProblems() &&
+        problemSetService.renderProblems()?.length &&
+        problemSetService.countPages() > 1
+      "
       class="pagination-container"
     >
       <button
         class="pagination-container__button"
         (click)="prevPage()"
-        [disabled]="page() === 1"
+        [disabled]="problemSetService.page() === 1"
       >
         Previous
       </button>
       <button
         class="pagination-container__button"
-        *ngIf="renderProblems() && renderProblems()?.length"
+        *ngIf="
+          problemSetService.renderProblems() &&
+          problemSetService.renderProblems()?.length
+        "
         (click)="nextPage()"
-        [disabled]="page() === countPages()"
+        [disabled]="problemSetService.page() === problemSetService.countPages()"
       >
         Next
       </button>
 
       <p class="pagination-container__page">
-        Page {{ page() }} of {{ countPages() }}
+        Page {{ problemSetService.page() }} of
+        {{ problemSetService.countPages() }}
       </p>
     </section>
   </section>
