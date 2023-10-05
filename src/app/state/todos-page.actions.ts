@@ -10,7 +10,7 @@ export const addProblem = createAction(
 
 export const removeProblem = createAction(
   '[My Problems Page] Remove Problem',
-  props<{ problem: Problem }>()
+  props<{ id: string }>()
 );
 
 export const markAsAccepted = createAction(

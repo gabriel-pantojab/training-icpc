@@ -23,11 +23,11 @@ export const todosReducer = createReducer(
     problems: [...currentState.problems, action.problem],
   })),
   on(TodosPageActions.removeProblem, (currentState, action) => {
-    const problemR = action.problem;
+    const problemId = action.id;
     return {
       ...currentState,
       problems: currentState.problems.filter((problem) => {
-        return problem.id !== problemR.id;
+        return problem.id !== problemId;
       }),
     };
   }),

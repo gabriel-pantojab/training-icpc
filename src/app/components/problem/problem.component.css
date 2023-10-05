@@ -37,7 +37,7 @@
   justify-content: flex-end;
 }
 
-.btn-add {
+.btn-action {
   border: 1px solid #ccc;
   background-color: #fff;
   border-radius: 0.5rem;
@@ -46,13 +46,20 @@
   transition: all 0.2s ease;
 }
 
-.btn-add:active {
+.btn-action:active {
   transform: scale(0.9);
 }
-.btn-add:hover {
-  background-color: #ccc;
+.btn-action:hover {
+  opacity: 0.8;
 }
 
+.btn-add {
+  background-color: #b2f2bb;
+}
+
+.btn-remove {
+  background-color: tomato;
+}
 .problem-name-container {
   order: 3;
   width: 100%;

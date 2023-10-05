@@ -13,7 +13,13 @@
         <h3 class="problem-name">{{ name }}</h3>
       </div>
       <div class="problem-add">
-        <button class="btn-add" (click)="addProblem()">Agregar</button>
+        <button
+          [ngClass]="{ 'btn-remove': isAdded(), 'btn-add': !isAdded() }"
+          class="btn-action"
+          (click)="handleAction()"
+        >
+          {{ isAdded() ? "Quitar" : "Añadir" }}
+        </button>
       </div>
     </header>
     <section class="problem-content">
