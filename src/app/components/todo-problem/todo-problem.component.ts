@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { Problem } from 'src/app/models/model';
+import { Component, Input, signal } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Problem, ProblemStatus } from 'src/app/models/model';
+import { TodosPageActions } from 'src/app/state';
 
 @Component({
   selector: 'app-todo-problem',
@@ -8,4 +10,19 @@ import { Problem } from 'src/app/models/model';
 })
 export class TodoProblemComponent {
   @Input() problem!: Problem;
+  accepted = ProblemStatus.ACCEPTED;
+
+  constructor(private store: Store) {}
+
+  handleAction() {
+    if (this.problem.status === ProblemStatus.PENDING) {
+      this.store.dispatch(
+        TodosPageActions.markAsAccepted({ id: this.problem.id })
+      );
+    } else {
+      this.store.dispatch(
+        TodosPageActions.markAsPending({ id: this.problem.id })
+      );
+    }
+  }
 }

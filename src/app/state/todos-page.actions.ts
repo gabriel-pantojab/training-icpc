@@ -15,10 +15,10 @@ export const removeProblem = createAction(
 
 export const markAsAccepted = createAction(
   '[My Problems Page] Mark as Accepted',
-  props<{ problem: Problem }>()
+  props<{ id: string }>()
 );
 
 export const markAsPending = createAction(
   '[My Problems Page] Mark as Pending',
-  props<{ problem: Problem }>()
+  props<{ id: string }>()
 );

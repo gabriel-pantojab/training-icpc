@@ -32,18 +32,20 @@ export const todosReducer = createReducer(
     };
   }),
   on(TodosPageActions.markAsAccepted, (currentState, action) => {
-    let temp = { ...currentState };
+    let temp = structuredClone(currentState);
     const index = temp.problems.findIndex((problem) => {
-      return problem.id === action.problem.id;
+      return problem.id === action.id;
     });
+    if (index === -1) return temp;
     temp.problems[index].status = ProblemStatus.ACCEPTED;
     return temp;
   }),
   on(TodosPageActions.markAsPending, (currentState, action) => {
-    let temp = { ...currentState };
+    let temp = structuredClone(currentState);
     const index = temp.problems.findIndex((problem) => {
-      return problem.id === action.problem.id;
+      return problem.id === action.id;
     });
+    if (index === -1) return temp;
     temp.problems[index].status = ProblemStatus.PENDING;
     return temp;
   })
