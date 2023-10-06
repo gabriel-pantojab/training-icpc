@@ -21,6 +21,7 @@ export interface Problem {
   tags: string[];
   url: string;
   status: ProblemStatus;
+  date: string;
 }
 
 export enum ProblemStatus {

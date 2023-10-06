@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
 import { TodosPageActions, TodosSelectors } from 'src/app/state';
+import { getCurrentDateFormat } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-problem',
@@ -45,6 +46,7 @@ export class ProblemComponent implements OnInit {
       id: this.contestId + this.id,
       url: this.link + this.contestId + '/' + this.id,
       status: ProblemStatus.PENDING,
+      date: getCurrentDateFormat(),
     };
     this.store.dispatch(
       TodosPageActions.addProblem({
