@@ -15,6 +15,8 @@ import { MyProblemsComponent } from './components/my-problems/my-problems.compon
 import { StoreModule } from '@ngrx/store';
 import { problemSetReducer, todosReducer } from './state';
 import { TodoProblemComponent } from './components/todo-problem/todo-problem.component';
+import { ProblemListDateComponent } from './components/problem-list-date/problem-list-date.component';
+import { ObjToArrayPipe } from './obj-to-array.pipe';
 
 const routes: Routes = [
   {
@@ -40,6 +42,8 @@ const routes: Routes = [
     ProblemSetComponent,
     MyProblemsComponent,
     TodoProblemComponent,
+    ProblemListDateComponent,
+    ObjToArrayPipe,
   ],
   imports: [
     BrowserModule,

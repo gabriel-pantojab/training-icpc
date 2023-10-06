@@ -2,7 +2,7 @@ import { Component, Input, OnInit, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
-import { TodosPageActions, TodosSelectors } from 'src/app/state';
+import { State, TodosPageActions, TodosSelectors } from 'src/app/state';
 import { getCurrentDateFormat } from 'src/app/utils/utils';
 
 @Component({
@@ -19,16 +19,19 @@ export class ProblemComponent implements OnInit {
   isAdded = signal<boolean>(false);
   link = 'https://codeforces.com/problemset/problem/';
 
-  todoProblem$: Observable<Problem[]> = this.store.select(
-    TodosSelectors.problems
-  );
+  todoProblem$: Observable<State> = this.store.select(TodosSelectors.problems);
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.todoProblem$.subscribe((problems) => {
-      const problem = problems.find((problem) => {
-        return problem.id === this.contestId + this.id;
+    this.todoProblem$.subscribe((dayProblems) => {
+      let problem;
+      Object.values(dayProblems).forEach((dayProblem) => {
+        dayProblem.problems.forEach((p) => {
+          if (p.id === this.contestId + this.id) {
+            problem = p;
+          }
+        });
       });
       if (problem) {
         this.isAdded.set(true);

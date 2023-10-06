@@ -1,9 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { TodosState, todosFeatureKey } from './todos.reducer';
+import { State, todosFeatureKey } from './todos.reducer';
 
-const todosState = createFeatureSelector<TodosState>(todosFeatureKey);
+const todosState = createFeatureSelector<State>(todosFeatureKey);
+export const problems = createSelector(todosState, (todosState) => todosState);
 
-export const problems = createSelector(
-  todosState,
-  (todosState) => todosState.problems
-);
+export const problemsDate = (date: string) => {
+  return createSelector(problems, (problems) => {
+    if (problems[date]) {
+      return problems[date].problems;
+    } else return [];
+  });
+};

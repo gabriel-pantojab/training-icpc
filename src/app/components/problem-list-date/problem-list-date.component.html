@@ -1,0 +1,11 @@
+<section class="problem-list-date">
+  <header>
+    <h2>{{ date }}</h2>
+  </header>
+  <ul class="my-problems-list">
+    <app-todo-problem
+      *ngFor="let item of problems$ | async"
+      [problem]="item"
+    ></app-todo-problem>
+  </ul>
+</section>

@@ -4,11 +4,9 @@
 
 <main class="my-problems">
   <section class="my-problems__container">
-    <ul class="my-problems-list">
-      <app-todo-problem
-        *ngFor="let item of todoProblem$ | async"
-        [problem]="item"
-      ></app-todo-problem>
-    </ul>
+    <app-problem-list-date
+      *ngFor="let date of todoProblem$ | async | objToArray"
+      [date]="date"
+    ></app-problem-list-date>
   </section>
 </main>

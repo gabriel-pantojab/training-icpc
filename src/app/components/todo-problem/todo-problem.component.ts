@@ -17,11 +17,17 @@ export class TodoProblemComponent {
   handleAction() {
     if (this.problem.status === ProblemStatus.PENDING) {
       this.store.dispatch(
-        TodosPageActions.markAsAccepted({ id: this.problem.id })
+        TodosPageActions.markAsAccepted({
+          id: this.problem.id,
+          date: this.problem.date,
+        })
       );
     } else {
       this.store.dispatch(
-        TodosPageActions.markAsPending({ id: this.problem.id })
+        TodosPageActions.markAsPending({
+          id: this.problem.id,
+          date: this.problem.date,
+        })
       );
     }
   }

@@ -20,6 +20,7 @@ export const todosReducer = createReducer(
   on(TodosPageActions.addProblem, (currentState, action) => {
     const key = getCurrentDateFormat();
     const temp = structuredClone(currentState);
+    if (!temp[key]) temp[key] = { problems: [] };
     temp[key].problems.push(action.problem);
     return temp;
   }),
