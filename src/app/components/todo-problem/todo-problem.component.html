@@ -21,7 +21,7 @@
       <button class="btn" (click)="handleAction()">
         {{ problem.status === accepted ? "Pending" : "Accepted" }}
       </button>
-      <button class="btn">Remove</button>
+      <button class="btn" (click)="handleRemove()">Remove</button>
     </div>
   </article>
 </li>

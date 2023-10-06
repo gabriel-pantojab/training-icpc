@@ -25,4 +25,10 @@ export class TodoProblemComponent {
       );
     }
   }
+
+  handleRemove() {
+    this.store.dispatch(
+      TodosPageActions.removeProblem({ id: this.problem.id })
+    );
+  }
 }
