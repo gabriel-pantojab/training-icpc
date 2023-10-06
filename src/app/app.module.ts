@@ -14,6 +14,7 @@ import { ProblemSetComponent } from './components/problem-set/problem-set.compon
 import { MyProblemsComponent } from './components/my-problems/my-problems.component';
 import { StoreModule } from '@ngrx/store';
 import { problemSetReducer, todosReducer } from './state';
+import { TodoProblemComponent } from './components/todo-problem/todo-problem.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
     NavbarComponent,
     ProblemSetComponent,
     MyProblemsComponent,
+    TodoProblemComponent,
   ],
   imports: [
     BrowserModule,

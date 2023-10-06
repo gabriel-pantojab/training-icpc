@@ -19,9 +19,7 @@ export class ProblemSetService {
   page = signal<number>(1);
 
   constructor(private codeforcesService: CodeforcesService) {}
-  hola() {
-    console.log('hola');
-  }
+
   async loadDefaultProblems() {
     this.setProblems(null);
     const problems =

@@ -2,25 +2,13 @@
   <h1>{{ title }}</h1>
 </header>
 
-<ul>
-  <li *ngFor="let problem of todoProblem$ | async">
-    <article>
-      <section>
-        <a href="{{ problem.url }}" target="_blank">
-          {{ problem.id }}
-        </a>
-        <p>{{ problem.name }}</p>
-        <section>
-          <p>Difficulty: {{ problem.difficulty }}</p>
-          <div class="tags-problem">
-            <span *ngFor="let tag of problem.tags"> {{ tag }}, </span>
-          </div>
-        </section>
-      </section>
-      <div>
-        <button>Accepted</button>
-        <button>Remove</button>
-      </div>
-    </article>
-  </li>
-</ul>
+<main class="my-problems">
+  <section class="my-problems__container">
+    <ul class="my-problems-list">
+      <app-todo-problem
+        *ngFor="let item of todoProblem$ | async"
+        [problem]="item"
+      ></app-todo-problem>
+    </ul>
+  </section>
+</main>

@@ -1,0 +1,22 @@
+<li class="item-todo-problem">
+  <article class="todo-problem">
+    <section class="todo-problem__info">
+      <header class="todo-problem__header">
+        <h3 class="todo-problem__name">{{ problem.name }}</h3>
+        <a href="{{ problem.url }}" target="_blank">
+          {{ problem.id }}
+        </a>
+      </header>
+      <section class="todo-problem__details">
+        <p>Difficulty: {{ problem.difficulty }}</p>
+        <div class="tags-problem">
+          <span *ngFor="let tag of problem.tags"> {{ tag }}, </span>
+        </div>
+      </section>
+    </section>
+    <div class="todo-problem__actions">
+      <button class="btn">Accepted</button>
+      <button class="btn">Remove</button>
+    </div>
+  </article>
+</li>

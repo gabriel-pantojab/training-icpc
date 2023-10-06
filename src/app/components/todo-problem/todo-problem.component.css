@@ -1,0 +1,72 @@
+.item-todo-problem {
+  width: 100%;
+}
+
+.todo-problem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.todo-problem__info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-problem__details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-problem__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todo-problem__name {
+  text-wrap: anywhere;
+}
+.todo-problem__actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tags-problem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tags-problem > span {
+  font-size: 0.8rem;
+  color: #888;
+  overflow-wrap: anywhere;
+}
+
+.btn {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+.btn:hover {
+  opacity: 0.8;
+}
