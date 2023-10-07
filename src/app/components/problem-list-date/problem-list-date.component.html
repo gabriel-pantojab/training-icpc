@@ -1,8 +1,5 @@
 <section class="problem-list-date">
-  <header
-    class="problem-list-date__header"
-    [ngClass]="!showProblems ? 'hidden' : ''"
-  >
+  <header class="problem-list-date__header" [ngClass]="getClasses()">
     <h2>Date: {{ date }}</h2>
     <button (click)="toggleShowProblems()" class="btn-show">
       <span [ngClass]="!showProblems ? 'rotate' : ''">

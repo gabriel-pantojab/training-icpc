@@ -30,6 +30,10 @@
   border-radius: 0.5rem;
 }
 
+.pedding-problems {
+  background-color: tomato;
+}
+
 .rotate > svg {
   transform: rotate(180deg);
 }
