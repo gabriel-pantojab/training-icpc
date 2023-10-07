@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { DatabaseService } from 'src/app/services/database/database.service';
 import {
   State,
   TodosPageActions,
@@ -26,6 +28,9 @@ export class ProblemComponent implements OnInit {
   link = 'https://codeforces.com/problemset/problem/';
 
   todoProblem$: Observable<State> = this.store.select(TodosSelectors.problems);
+
+  authService = inject(AuthService);
+  db = inject(DatabaseService);
 
   constructor(private store: Store) {}
 
@@ -61,6 +66,13 @@ export class ProblemComponent implements OnInit {
         problem,
       })
     );
+    if (this.authService.user) {
+      this.db.addProblem(
+        getCurrentDateFormat(),
+        problem,
+        this.authService.user.uid
+      );
+    }
   }
 
   removeProblem() {
@@ -69,6 +81,12 @@ export class ProblemComponent implements OnInit {
         id: this.contestId + this.id,
       })
     );
+    if (this.authService.user) {
+      this.db.removeProblem(
+        this.authService.user.uid,
+        this.contestId + this.id
+      );
+    }
   }
 
   handleAction() {

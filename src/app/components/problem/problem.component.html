@@ -1,5 +1,8 @@
 <li class="problem-item">
-  <article class="problem" [ngClass]="isAccepted() ? 'problem-accepted' : ''">
+  <article
+    class="problem"
+    [ngClass]="isAccepted() && authService.isLogged() ? 'problem-accepted' : ''"
+  >
     <header class="problem-header">
       <div class="problem-id-container">
         <a
@@ -12,7 +15,7 @@
       <div class="problem-name-container">
         <h3 class="problem-name">{{ name }}</h3>
       </div>
-      <div class="problem-add" *ngIf="!isAccepted()">
+      <div class="problem-add" *ngIf="!isAccepted() && authService.isLogged()">
         <button
           [ngClass]="{ 'btn-remove': isAdded(), 'btn-add': !isAdded() }"
           class="btn-action"
