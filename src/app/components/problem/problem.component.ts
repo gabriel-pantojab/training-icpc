@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DatabaseService } from 'src/app/services/database/database.service';
 import {
   State,
   TodosPageActions,
@@ -29,6 +30,7 @@ export class ProblemComponent implements OnInit {
   todoProblem$: Observable<State> = this.store.select(TodosSelectors.problems);
 
   authService = inject(AuthService);
+  db = inject(DatabaseService);
 
   constructor(private store: Store) {}
 
@@ -64,6 +66,13 @@ export class ProblemComponent implements OnInit {
         problem,
       })
     );
+    if (this.authService.user) {
+      this.db.addProblem(
+        getCurrentDateFormat(),
+        problem,
+        this.authService.user.uid
+      );
+    }
   }
 
   removeProblem() {
