@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Database, ref, set } from '@angular/fire/database';
+import { get, child } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,13 @@ export class DatabaseService {
       photoURL,
       problems: {},
     });
+  }
+
+  async getUserProblems(uid: string) {
+    const snapshot = await get(child(ref(this.db), `users/${uid}`));
+    if (snapshot.exists()) {
+      if (snapshot.val().problems) return snapshot.val().problems;
+    }
+    return {};
   }
 }
