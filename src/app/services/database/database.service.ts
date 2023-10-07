@@ -43,16 +43,20 @@ export class DatabaseService {
 
   async addProblem(key: string, problem: Problem, uid: string) {
     const snapshot = await get(child(ref(this.db), `users/${uid}`));
-    if (snapshot.exists()) {
+    if (snapshot.exists() && snapshot.val().problems) {
       const problems: State = snapshot.val().problems;
       problems[key].problems.push(problem);
       set(ref(this.db, `users/${uid}/problems`), problems);
+    } else {
+      set(ref(this.db, `users/${uid}/problems/${key}`), {
+        problems: [problem],
+      });
     }
   }
 
   async removeProblem(uid: string, idProblem: string) {
     const snapshot = await get(child(ref(this.db), `users/${uid}`));
-    if (snapshot.exists()) {
+    if (snapshot.exists() && snapshot.val().problems) {
       const problems: State = snapshot.val().problems;
       Object.keys(problems).forEach((key) => {
         problems[key].problems = problems[key].problems.filter(
@@ -73,6 +77,21 @@ export class DatabaseService {
       if (index !== -1) {
         update(ref(this.db, `users/${uid}/problems/${key}/problems/${index}`), {
           status: ProblemStatus.ACCEPTED,
+        });
+      }
+    }
+  }
+
+  async markAsPedding(uid: string, idProblem: string, key: string) {
+    const snapshot = await get(child(ref(this.db), `users/${uid}`));
+    if (snapshot.exists()) {
+      const problems: State = snapshot.val().problems;
+      const index = problems[key].problems.findIndex(
+        (p: Problem) => p.id === idProblem
+      );
+      if (index !== -1) {
+        update(ref(this.db, `users/${uid}/problems/${key}/problems/${index}`), {
+          status: ProblemStatus.PENDING,
         });
       }
     }

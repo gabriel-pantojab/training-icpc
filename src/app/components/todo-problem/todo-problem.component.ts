@@ -42,6 +42,13 @@ export class TodoProblemComponent {
           date: this.problem.date,
         })
       );
+      if (this.auth.user) {
+        this.db.markAsPedding(
+          this.auth.user?.uid,
+          this.problem.id,
+          this.problem.date
+        );
+      }
     }
   }
 
@@ -49,5 +56,8 @@ export class TodoProblemComponent {
     this.store.dispatch(
       TodosPageActions.removeProblem({ id: this.problem.id })
     );
+    if (this.auth.user) {
+      this.db.removeProblem(this.auth.user?.uid, this.problem.id);
+    }
   }
 }
