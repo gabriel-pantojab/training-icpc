@@ -2,7 +2,12 @@ import { Component, Input, OnInit, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
-import { State, TodosPageActions, TodosSelectors } from 'src/app/state';
+import {
+  State,
+  TodosPageActions,
+  TodosSelectors,
+  TodosState,
+} from 'src/app/state';
 import { getCurrentDateFormat } from 'src/app/utils/utils';
 
 @Component({
@@ -17,6 +22,7 @@ export class ProblemComponent implements OnInit {
   @Input() id!: string;
   @Input() contestId!: string;
   isAdded = signal<boolean>(false);
+  isAccepted = signal<boolean>(false);
   link = 'https://codeforces.com/problemset/problem/';
 
   todoProblem$: Observable<State> = this.store.select(TodosSelectors.problems);
@@ -24,21 +30,20 @@ export class ProblemComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.todoProblem$.subscribe((dayProblems) => {
-      let problem;
-      Object.values(dayProblems).forEach((dayProblem) => {
-        dayProblem.problems.forEach((p) => {
-          if (p.id === this.contestId + this.id) {
-            problem = p;
-          }
+    this.todoProblem$.subscribe(
+      (dayProblems: { [key: string]: TodosState }) => {
+        Object.values(dayProblems).forEach((dayProblem: TodosState) => {
+          dayProblem.problems.forEach((p: Problem) => {
+            if (p.id === this.contestId + this.id) {
+              this.isAdded.set(true);
+              if (p.status === ProblemStatus.ACCEPTED) {
+                this.isAccepted.set(true);
+              }
+            }
+          });
         });
-      });
-      if (problem) {
-        this.isAdded.set(true);
-      } else {
-        this.isAdded.set(false);
       }
-    });
+    );
   }
 
   addProblem() {

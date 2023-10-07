@@ -24,6 +24,10 @@
   padding: 0.5rem;
 }
 
+.problem-accepted {
+  background-color: #d4edc9;
+}
+
 .problem-header {
   width: 100%;
   display: flex;
