@@ -13,7 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProblemSetComponent } from './components/problem-set/problem-set.component';
 import { MyProblemsComponent } from './components/my-problems/my-problems.component';
 import { StoreModule } from '@ngrx/store';
-import { problemSetReducer, todosReducer } from './state';
+import { todosReducer } from './state';
 import { TodoProblemComponent } from './components/todo-problem/todo-problem.component';
 import { ProblemListDateComponent } from './components/problem-list-date/problem-list-date.component';
 import { ObjToArrayPipe } from './pipes/obj-to-array.pipe';
@@ -52,7 +52,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     StoreModule.forRoot({
       todosState: todosReducer,
-      problemSet: problemSetReducer,
     }),
   ],
   providers: [],
