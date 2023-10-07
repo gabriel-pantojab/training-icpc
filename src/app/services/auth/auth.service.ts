@@ -46,4 +46,8 @@ export class AuthService {
       });
     }
   }
+
+  async signOut() {
+    return await this.auth.signOut();
+  }
 }

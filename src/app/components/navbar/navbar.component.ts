@@ -8,4 +8,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class NavbarComponent {
   authService = inject(AuthService);
+
+  handleAuth() {
+    if (this.authService.user) {
+      this.authService.signOut();
+    } else {
+      this.authService.signInGoogle();
+    }
+  }
 }
