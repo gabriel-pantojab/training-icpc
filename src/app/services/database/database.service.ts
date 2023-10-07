@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Database, ref, set, push } from '@angular/fire/database';
+import { Database, ref, set, push, update } from '@angular/fire/database';
 import { get, child } from 'firebase/database';
-import { Problem } from 'src/app/models/model';
+import { Problem, ProblemStatus } from 'src/app/models/model';
 import { State } from 'src/app/state';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { State } from 'src/app/state';
 })
 export class DatabaseService {
   db = inject(Database);
+
   get dataBase() {
     return this.db;
   }
@@ -59,6 +60,21 @@ export class DatabaseService {
         );
       });
       set(ref(this.db, `users/${uid}/problems`), problems);
+    }
+  }
+
+  async markAsAccepted(uid: string, idProblem: string, key: string) {
+    const snapshot = await get(child(ref(this.db), `users/${uid}`));
+    if (snapshot.exists()) {
+      const problems: State = snapshot.val().problems;
+      const index = problems[key].problems.findIndex(
+        (p: Problem) => p.id === idProblem
+      );
+      if (index !== -1) {
+        update(ref(this.db, `users/${uid}/problems/${key}/problems/${index}`), {
+          status: ProblemStatus.ACCEPTED,
+        });
+      }
     }
   }
 }

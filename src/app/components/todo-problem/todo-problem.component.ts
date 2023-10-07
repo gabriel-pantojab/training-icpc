@@ -1,6 +1,8 @@
 import { Component, Input, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Problem, ProblemStatus } from 'src/app/models/model';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { DatabaseService } from 'src/app/services/database/database.service';
 import { TodosPageActions } from 'src/app/state';
 
 @Component({
@@ -12,7 +14,11 @@ export class TodoProblemComponent {
   @Input() problem!: Problem;
   accepted = ProblemStatus.ACCEPTED;
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private db: DatabaseService,
+    private auth: AuthService
+  ) {}
 
   handleAction() {
     if (this.problem.status === ProblemStatus.PENDING) {
@@ -22,6 +28,13 @@ export class TodoProblemComponent {
           date: this.problem.date,
         })
       );
+      if (this.auth.user) {
+        this.db.markAsAccepted(
+          this.auth.user?.uid,
+          this.problem.id,
+          this.problem.date
+        );
+      }
     } else {
       this.store.dispatch(
         TodosPageActions.markAsPending({
