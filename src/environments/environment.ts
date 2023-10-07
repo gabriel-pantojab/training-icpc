@@ -7,5 +7,6 @@ export const environment = {
     authDomain: 'training-icpc.firebaseapp.com',
     messagingSenderId: '332791973283',
     measurementId: 'G-DZRRK3MP28',
+    databaseURL: 'https://training-icpc-default-rtdb.firebaseio.com/',
   },
 };
