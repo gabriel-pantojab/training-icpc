@@ -38,6 +38,7 @@ export const todosReducer = createReducer(
     temp[key].problems = temp[key].problems.filter((problem) => {
       return problem.id !== problemId;
     });
+    if (temp[key].problems.length === 0) delete temp[key];
     return temp;
   }),
   on(TodosPageActions.markAsAccepted, (currentState, action) => {
