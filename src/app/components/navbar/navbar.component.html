@@ -16,8 +16,8 @@
     </li>
   </ul>
   <section>
-    <button (click)="handleAuth()">
-      {{ authService.user ? "Logout" : "Login" }}
+    <button (click)="handleAuth()" class="navbar__button">
+      {{ authService.user ? "Logout" : "Login with google" }}
     </button>
   </section>
 </nav>

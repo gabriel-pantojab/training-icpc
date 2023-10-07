@@ -1,6 +1,8 @@
 .navbar {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
   gap: 1rem;
   align-items: center;
 
@@ -31,4 +33,14 @@
 
 .active {
   border-bottom: 3px solid #3b5998;
+}
+
+.navbar__button {
+  border: none;
+  min-width: 50px;
+  padding: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  color: #3760b8;
 }
