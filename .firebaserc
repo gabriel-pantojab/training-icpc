@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "training-icpc"
+  },
+  "targets": {
+    "training-icpc": {
+      "hosting": {
+        "random-problem": [
+          "training-icpc"
+        ]
+      }
+    }
   }
 }
