@@ -30,6 +30,10 @@ export class AuthService {
     return this.currentUser;
   }
 
+  isLogged() {
+    return this.currentUser !== null;
+  }
+
   async signInGoogle() {
     try {
       await signInWithPopup(this.auth, this.googleProvider);

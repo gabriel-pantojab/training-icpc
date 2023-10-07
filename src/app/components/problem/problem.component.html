@@ -12,7 +12,7 @@
       <div class="problem-name-container">
         <h3 class="problem-name">{{ name }}</h3>
       </div>
-      <div class="problem-add" *ngIf="!isAccepted()">
+      <div class="problem-add" *ngIf="!isAccepted() && authService.isLogged()">
         <button
           [ngClass]="{ 'btn-remove': isAdded(), 'btn-add': !isAdded() }"
           class="btn-action"

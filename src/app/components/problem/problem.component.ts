@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import {
   State,
   TodosPageActions,
@@ -26,6 +27,8 @@ export class ProblemComponent implements OnInit {
   link = 'https://codeforces.com/problemset/problem/';
 
   todoProblem$: Observable<State> = this.store.select(TodosSelectors.problems);
+
+  authService = inject(AuthService);
 
   constructor(private store: Store) {}
 
