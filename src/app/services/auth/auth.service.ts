@@ -11,6 +11,7 @@ import { DatabaseService } from '../database/database.service';
 import { child, get, ref } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
 import { TodosPageActions } from 'src/app/state';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class AuthService {
   private currentUser = this.auth.currentUser;
   db = inject(DatabaseService);
   store = inject(Store);
+  router = inject(Router);
 
   constructor() {
     onAuthStateChanged(this.auth, (user) => {
@@ -33,6 +35,7 @@ export class AuthService {
         });
       } else {
         this.currentUser = null;
+        this.router.navigate(['/']);
       }
     });
   }
