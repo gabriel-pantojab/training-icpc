@@ -48,4 +48,17 @@ export class DatabaseService {
       set(ref(this.db, `users/${uid}/problems`), problems);
     }
   }
+
+  async removeProblem(uid: string, idProblem: string) {
+    const snapshot = await get(child(ref(this.db), `users/${uid}`));
+    if (snapshot.exists()) {
+      const problems: State = snapshot.val().problems;
+      Object.keys(problems).forEach((key) => {
+        problems[key].problems = problems[key].problems.filter(
+          (p: Problem) => p.id !== idProblem
+        );
+      });
+      set(ref(this.db, `users/${uid}/problems`), problems);
+    }
+  }
 }

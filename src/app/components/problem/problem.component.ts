@@ -81,6 +81,12 @@ export class ProblemComponent implements OnInit {
         id: this.contestId + this.id,
       })
     );
+    if (this.authService.user) {
+      this.db.removeProblem(
+        this.authService.user.uid,
+        this.contestId + this.id
+      );
+    }
   }
 
   handleAction() {
