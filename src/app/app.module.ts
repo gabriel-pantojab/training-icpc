@@ -17,11 +17,11 @@ import { todosReducer } from './state';
 import { TodoProblemComponent } from './components/todo-problem/todo-problem.component';
 import { ProblemListDateComponent } from './components/problem-list-date/problem-list-date.component';
 import { ObjToArrayPipe } from './pipes/obj-to-array.pipe';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 const routes: Routes = [
   {
