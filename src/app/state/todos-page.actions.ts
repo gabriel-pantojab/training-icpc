@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Problem } from '../models/model';
+import { State } from './todos.reducer';
 
 export const init = createAction('[My Problems Page] Init');
 
@@ -21,4 +22,9 @@ export const markAsAccepted = createAction(
 export const markAsPending = createAction(
   '[My Problems Page] Mark as Pending',
   props<{ id: string; date: string }>()
+);
+
+export const setProblems = createAction(
+  '[My Problems Page] Set Problems',
+  props<{ problems: State }>()
 );

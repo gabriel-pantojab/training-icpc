@@ -9,6 +9,8 @@ import {
 import Swal from 'sweetalert2';
 import { DatabaseService } from '../database/database.service';
 import { child, get, ref } from '@angular/fire/database';
+import { Store } from '@ngrx/store';
+import { TodosPageActions } from 'src/app/state';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +20,17 @@ export class AuthService {
   private readonly googleProvider = new GoogleAuthProvider();
   private currentUser = this.auth.currentUser;
   db = inject(DatabaseService);
+  store = inject(Store);
 
   constructor() {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         this.currentUser = user;
+        this.db.getUserProblems(user.uid).then((problems) => {
+          this.store.dispatch(
+            TodosPageActions.setProblems({ problems: problems })
+          );
+        });
       } else {
         this.currentUser = null;
       }

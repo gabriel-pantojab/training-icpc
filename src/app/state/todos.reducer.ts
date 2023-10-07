@@ -59,5 +59,8 @@ export const todosReducer = createReducer(
     if (index === -1) return temp;
     temp[key].problems[index].status = ProblemStatus.PENDING;
     return temp;
+  }),
+  on(TodosPageActions.setProblems, (currentState, action) => {
+    return action.problems;
   })
 );

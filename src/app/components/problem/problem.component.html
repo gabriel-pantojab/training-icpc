@@ -1,5 +1,8 @@
 <li class="problem-item">
-  <article class="problem" [ngClass]="isAccepted() ? 'problem-accepted' : ''">
+  <article
+    class="problem"
+    [ngClass]="isAccepted() && authService.isLogged() ? 'problem-accepted' : ''"
+  >
     <header class="problem-header">
       <div class="problem-id-container">
         <a
