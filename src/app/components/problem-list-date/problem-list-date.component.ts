@@ -12,9 +12,14 @@ import { TodosSelectors } from 'src/app/state';
 export class ProblemListDateComponent implements OnInit {
   @Input() date!: string;
   problems$!: Observable<Problem[]>;
+  showProblems: boolean = true;
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.problems$ = this.store.select(TodosSelectors.problemsDate(this.date));
+  }
+
+  toggleShowProblems() {
+    this.showProblems = !this.showProblems;
   }
 }
