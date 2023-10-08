@@ -33,9 +33,10 @@ export class ProblemSetService {
 
   setProblems(problems: ProblemAPI[] | null) {
     this.problems.set(problems);
-    if (problems) {
+    this.countPages.set(1);
+    this.page.set(1);
+    if (problems && problems.length > 1) {
       this.countPages.set(Math.ceil(problems.length / 100));
-      this.page.set(1);
     }
   }
 
