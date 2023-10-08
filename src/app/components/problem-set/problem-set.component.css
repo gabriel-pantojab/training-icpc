@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  /* padding-top: 0; */
   gap: 1rem;
 }
 
@@ -20,12 +19,6 @@
   min-width: 250px;
   display: flex;
   flex-direction: column;
-  /* padding: 1rem; */
-}
-
-.border {
-  /* border: 1px solid #ccc; */
-  border-radius: 0.5rem;
 }
 
 .problems-container__loading,

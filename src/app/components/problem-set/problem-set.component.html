@@ -7,15 +7,7 @@
     (emitter)="setProblems($event)"
   ></app-filter-codeforces>
 
-  <section
-    [ngClass]="
-      problemSetService.renderProblems() &&
-      problemSetService.renderProblems()?.length
-        ? 'border'
-        : ''
-    "
-    class="problems-container"
-  >
+  <section class="problems-container">
     <ng-template
       [ngIf]="
         problemSetService.renderProblems() &&

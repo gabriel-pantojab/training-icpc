@@ -25,6 +25,7 @@
 }
 
 .my-problems__container__empty-problems {
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
