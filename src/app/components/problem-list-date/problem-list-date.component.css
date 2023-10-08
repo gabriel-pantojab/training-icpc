@@ -15,12 +15,10 @@
   background-color: #ccc;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+  cursor: pointer;
 }
 
-.btn-show {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+.icon-container {
   display: flex;
   justify-content: center;
   align-items: center;
