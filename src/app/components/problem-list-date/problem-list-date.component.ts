@@ -12,7 +12,7 @@ import { TodosSelectors } from 'src/app/state';
 export class ProblemListDateComponent implements OnInit {
   @Input() date!: string;
   problems$!: Observable<Problem[]>;
-  showProblems: boolean = true;
+  showProblems: boolean = false;
   pendingProblems = 0;
 
   constructor(private store: Store) {}
