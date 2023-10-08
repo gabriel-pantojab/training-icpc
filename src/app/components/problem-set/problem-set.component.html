@@ -1,13 +1,21 @@
-<header class="header-container">
+<!-- <header class="header-container">
   <h1 class="app-title">{{ title }}</h1>
-</header>
+</header> -->
 
 <main class="main-container">
   <app-filter-codeforces
     (emitter)="setProblems($event)"
   ></app-filter-codeforces>
 
-  <section class="problems-container">
+  <section
+    [ngClass]="
+      problemSetService.renderProblems() &&
+      problemSetService.renderProblems()?.length
+        ? 'border'
+        : ''
+    "
+    class="problems-container"
+  >
     <ng-template
       [ngIf]="
         problemSetService.renderProblems() &&
@@ -30,7 +38,7 @@
       class="problems-container__loading"
     >
       <app-loading></app-loading>
-      <p>{{ loadingMessage }}</p>
+      <p>"{{ loadingMessage }}"</p>
     </div>
     <div
       *ngIf="
