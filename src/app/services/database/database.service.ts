@@ -43,7 +43,11 @@ export class DatabaseService {
 
   async addProblem(key: string, problem: Problem, uid: string) {
     const snapshot = await get(child(ref(this.db), `users/${uid}`));
-    if (snapshot.exists() && snapshot.val().problems) {
+    const valid =
+      snapshot.exists() &&
+      snapshot.val().problems &&
+      snapshot.val().problems[key];
+    if (valid) {
       const problems: State = snapshot.val().problems;
       problems[key].problems.push(problem);
       set(ref(this.db, `users/${uid}/problems`), problems);
