@@ -10,7 +10,16 @@ import { State, TodosSelectors } from 'src/app/state';
 })
 export class MyProblemsComponent {
   title = 'My Problems';
+  emptyProblems = true;
   todoProblem$: Observable<State> = this.store.select(TodosSelectors.problems);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    this.empty();
+  }
+
+  empty() {
+    this.store.select(TodosSelectors.problems).subscribe((problems) => {
+      this.emptyProblems = Object.keys(problems).length === 0;
+    });
+  }
 }
