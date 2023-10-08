@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProblemAPI } from 'src/app/models/model';
+import { LoadingMessagesService } from 'src/app/services/loading-messages/loading-messages.service';
 import { ProblemSetService } from 'src/app/services/problem-set/problem-set.service';
 
 @Component({
@@ -9,7 +11,15 @@ import { ProblemSetService } from 'src/app/services/problem-set/problem-set.serv
 })
 export class ProblemSetComponent implements OnInit {
   title = 'Problem Set';
-  constructor(public problemSetService: ProblemSetService) {}
+  loadingMessage = '';
+  constructor(
+    public problemSetService: ProblemSetService,
+    public loadingMessageService: LoadingMessagesService
+  ) {
+    this.loadingMessageService.cycleMessages().subscribe((message) => {
+      this.loadingMessage = message;
+    });
+  }
 
   ngOnInit() {
     if (this.problemSetService.renderProblems()?.length === 0)
