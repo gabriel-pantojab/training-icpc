@@ -43,6 +43,7 @@ export class ProblemListDateComponent implements OnInit {
     let classes = '';
     if (!this.showProblems) classes += 'hidden ';
     if (this.pendingProblems > 0) classes += 'pedding-problems ';
+    else classes += 'accepted-problems';
     return classes;
   }
 }
