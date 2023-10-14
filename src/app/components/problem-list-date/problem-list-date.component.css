@@ -32,6 +32,10 @@
   background-color: tomato;
 }
 
+.accepted-problems {
+  background-color: #d4edc9;
+}
+
 .rotate > svg {
   transform: rotate(180deg);
 }
