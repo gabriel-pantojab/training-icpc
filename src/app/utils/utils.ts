@@ -7,5 +7,5 @@ export function getCurrentDateFormat() {
   const year = date.getFullYear();
   const month = controlNumber(date.getMonth() + 1);
   const dayOfMonth = controlNumber(date.getDate());
-  return `${dayOfMonth}${month}${year}`;
+  return `${year}${month}${dayOfMonth}`;
 }
