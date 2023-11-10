@@ -14,11 +14,21 @@ export class ProblemListDateComponent implements OnInit {
   problems$!: Observable<Problem[]>;
   showProblems: boolean = false;
   pendingProblems = 0;
+  totalProblems = 0;
+  acceptedProblems = 0;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.problems$ = this.store.select(TodosSelectors.problemsDate(this.date));
+    this.problems$.subscribe((problems) => {
+      this.totalProblems = problems.length;
+    });
+    this.problems$.subscribe((problems) => {
+      this.acceptedProblems = problems.filter(
+        (p) => p.status === ProblemStatus.ACCEPTED
+      ).length;
+    });
     this.getProblemsPending();
   }
 

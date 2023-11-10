@@ -8,14 +8,28 @@
 }
 
 .problem-list-date__header {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.problem-list-date__header-info {
   width: 100%;
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
-  background-color: #ccc;
+  /* background-color: #ccc; */
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   cursor: pointer;
+}
+
+.problem-list-date__header-count {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  padding-top: 0;
 }
 
 .icon-container {
