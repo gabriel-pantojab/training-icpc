@@ -95,4 +95,16 @@ export class CodeforcesService {
     );
     return problem ? problem : null;
   }
+
+  async getProblemByName(name: string): Promise<ProblemAPI | null> {
+    name = name.toLowerCase();
+    const response = await fetch(`${this.API_URL}/problemset.problems?`);
+    const data = await response.json();
+    if (data.status !== 'OK') throw new Error('Codeforces API error');
+    const problems: ProblemAPI[] = data.result.problems;
+    const problem = problems.find((problem) =>
+      problem.name.toLowerCase().includes(name)
+    );
+    return problem ? problem : null;
+  }
 }

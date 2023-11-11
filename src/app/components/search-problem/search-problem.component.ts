@@ -19,6 +19,10 @@ export class SearchProblemComponent {
     event.preventDefault();
     const problem = this.inputProblem.value;
     if (!problem) return;
-    const problemData = await this.codeforcesService.getProblemById(problem);
+    let problemData = await this.codeforcesService.getProblemById(problem);
+    if (!problemData) {
+      problemData = await this.codeforcesService.getProblemByName(problem);
+    }
+    console.log(problemData);
   }
 }
