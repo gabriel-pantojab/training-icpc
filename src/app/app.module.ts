@@ -23,6 +23,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { loginGuard } from './guards/login.guard';
 import { SortProblemsDatePipe } from './pipes/sort-problems-date/sort-problems-date.pipe';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
     ProblemListDateComponent,
     ObjToArrayPipe,
     SortProblemsDatePipe,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,

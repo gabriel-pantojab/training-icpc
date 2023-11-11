@@ -1,0 +1,21 @@
+<section class="user-card">
+  <div
+    *ngIf="authService.isLogged()"
+    class="user-image-container"
+    (click)="toggleVisibleUserInfo()"
+  >
+    <img
+      class="user-image"
+      [src]="authService.user?.photoURL"
+      alt="user image"
+    />
+  </div>
+  <section class="navbar__user-info {{ getClassesUserInfo() }}" id="popup-info">
+    <p *ngIf="authService.isLogged()" class="user-name">
+      {{ authService.user?.displayName }}
+    </p>
+    <button (click)="handleAuth()" class="navbar__button-auth">
+      {{ authService.user ? "Logout" : "Login with google" }}
+    </button>
+  </section>
+</section>

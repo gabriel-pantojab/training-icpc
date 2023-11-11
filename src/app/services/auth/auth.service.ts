@@ -12,6 +12,7 @@ import { child, get, ref } from '@angular/fire/database';
 import { Store } from '@ngrx/store';
 import { TodosPageActions } from 'src/app/state';
 import { Router } from '@angular/router';
+import { FirebaseError } from '@angular/fire/app';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,7 @@ export class AuthService {
   router = inject(Router);
 
   constructor() {
+    this.googleProvider.setCustomParameters({ prompt: 'select_account' });
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         this.currentUser = user;
@@ -58,11 +60,15 @@ export class AuthService {
         text: 'You have successfully signed in.',
       });
     } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong! Try again later.',
-      });
+      if (error instanceof FirebaseError) {
+        if (error.code !== 'auth/cancelled-popup-request') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong! Try again later.',
+          });
+        }
+      }
     }
   }
 
