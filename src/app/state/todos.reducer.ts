@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { TodosPageActions } from '.';
 import { Problem, ProblemStatus } from '../models/model';
-import { getCurrentDateFormat } from '../utils/utils';
+import { currentDateCompact } from '../utils/utils';
 
 export const todosFeatureKey = 'todosState';
 
@@ -18,7 +18,7 @@ export const todosReducer = createReducer(
   initialState,
   on(TodosPageActions.init, () => initialState),
   on(TodosPageActions.addProblem, (currentState, action) => {
-    const key = getCurrentDateFormat();
+    const key = currentDateCompact();
     const temp = structuredClone(currentState);
     if (!temp[key]) temp[key] = { problems: [] };
     temp[key].problems.push(action.problem);

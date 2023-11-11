@@ -10,7 +10,7 @@ import {
   TodosSelectors,
   TodosState,
 } from 'src/app/state';
-import { getCurrentDateFormat } from 'src/app/utils/utils';
+import { currentDateCompact } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-problem',
@@ -59,7 +59,7 @@ export class ProblemComponent implements OnInit {
       id: this.contestId + this.id,
       url: this.link + this.contestId + '/' + this.id,
       status: ProblemStatus.PENDING,
-      date: getCurrentDateFormat(),
+      date: currentDateCompact(),
     };
     this.store.dispatch(
       TodosPageActions.addProblem({
@@ -68,7 +68,7 @@ export class ProblemComponent implements OnInit {
     );
     if (this.authService.user) {
       this.db.addProblem(
-        getCurrentDateFormat(),
+        currentDateCompact(),
         problem,
         this.authService.user.uid
       );

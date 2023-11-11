@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
 import { TodosSelectors } from 'src/app/state';
+import { formatDateString } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-problem-list-date',
@@ -30,6 +31,7 @@ export class ProblemListDateComponent implements OnInit {
       ).length;
     });
     this.getProblemsPending();
+    this.date = formatDateString(this.date);
   }
 
   toggleShowProblems() {
