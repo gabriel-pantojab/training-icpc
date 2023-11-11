@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ProblemAPI } from 'src/app/models/model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CodeforcesService } from 'src/app/services/codeforces.service';
 
@@ -12,6 +13,7 @@ export class SearchProblemComponent {
   readonly authService = inject(AuthService);
   readonly codeforcesService = inject(CodeforcesService);
   inputProblem = new FormControl('');
+  @Output() emitter = new EventEmitter<ProblemAPI[] | null>();
 
   constructor() {}
 
@@ -19,10 +21,11 @@ export class SearchProblemComponent {
     event.preventDefault();
     const problem = this.inputProblem.value;
     if (!problem) return;
-    let problemData = await this.codeforcesService.getProblemById(problem);
-    if (!problemData) {
-      problemData = await this.codeforcesService.getProblemByName(problem);
+    this.emitter.emit(null);
+    let problemData = await this.codeforcesService.searchProblemById(problem);
+    if (problemData.length === 0) {
+      problemData = await this.codeforcesService.searchProblemByName(problem);
     }
-    console.log(problemData);
+    this.emitter.emit(problemData);
   }
 }

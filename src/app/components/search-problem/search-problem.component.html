@@ -1,18 +1,18 @@
-<li class="navbar__list-item" *ngIf="authService.isLogged()">
-  <form>
+<section class="search" *ngIf="authService.isLogged()">
+  <form class="search-form">
     <input
-      class="navbar__search"
       type="text"
+      class="search-form__input"
       placeholder="id or name"
       [formControl]="inputProblem"
     />
     <button
-      class="navbar__search-button"
+      class="search-form__button"
       type="submit"
       [disabled]="inputProblem.invalid"
       (click)="searchProblem($event)"
     >
-      Search
+      <app-search-icon></app-search-icon>
     </button>
   </form>
-</li>
+</section>
