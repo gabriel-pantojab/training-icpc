@@ -3,10 +3,12 @@
 </header> -->
 
 <main class="main-container">
-  <app-search-problem (emitter)="setProblems($event)"></app-search-problem>
-  <app-filter-codeforces
-    (emitter)="setProblems($event)"
-  ></app-filter-codeforces>
+  <section class="main-container__search">
+    <app-search-problem (emitter)="setProblems($event)"></app-search-problem>
+    <app-filter-codeforces
+      (emitter)="setProblems($event)"
+    ></app-filter-codeforces>
+  </section>
 
   <section class="problems-container">
     <ng-template
