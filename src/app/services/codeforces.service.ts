@@ -83,4 +83,16 @@ export class CodeforcesService {
     if (minDifficulty > maxDifficulty)
       throw new Error('Min difficulty must be less than max difficulty');
   }
+
+  async getProblemById(id: string): Promise<ProblemAPI | null> {
+    id = id.toUpperCase();
+    const response = await fetch(`${this.API_URL}/problemset.problems?`);
+    const data = await response.json();
+    if (data.status !== 'OK') throw new Error('Codeforces API error');
+    const problems: ProblemAPI[] = data.result.problems;
+    const problem = problems.find(
+      (problem) => problem.contestId + problem.index === id
+    );
+    return problem ? problem : null;
+  }
 }
