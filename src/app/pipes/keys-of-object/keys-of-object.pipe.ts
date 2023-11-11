@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'objToArray',
+  name: 'keysOfObject',
 })
-export class ObjToArrayPipe implements PipeTransform {
+export class KeysOfObjectPipe implements PipeTransform {
   transform(object: any = []): any {
     return Object.keys(object);
   }

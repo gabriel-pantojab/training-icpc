@@ -8,7 +8,9 @@
       </p>
     </div>
     <app-problem-list-date
-      *ngFor="let date of todoProblem$ | async | objToArray | sortProblemsDate"
+      *ngFor="
+        let date of todoProblem$ | async | keysOfObject | sortProblemsDate
+      "
       [date]="date"
     ></app-problem-list-date>
   </section>

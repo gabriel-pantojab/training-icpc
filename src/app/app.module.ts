@@ -16,7 +16,6 @@ import { StoreModule } from '@ngrx/store';
 import { todosReducer } from './state';
 import { TodoProblemComponent } from './components/todo-problem/todo-problem.component';
 import { ProblemListDateComponent } from './components/problem-list-date/problem-list-date.component';
-import { ObjToArrayPipe } from './pipes/obj-to-array.pipe';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -24,6 +23,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { loginGuard } from './guards/login.guard';
 import { SortProblemsDatePipe } from './pipes/sort-problems-date/sort-problems-date.pipe';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { KeysOfObjectPipe } from './pipes/keys-of-object/keys-of-object.pipe';
 
 const routes: Routes = [
   {
@@ -51,9 +51,9 @@ const routes: Routes = [
     MyProblemsComponent,
     TodoProblemComponent,
     ProblemListDateComponent,
-    ObjToArrayPipe,
     SortProblemsDatePipe,
     UserCardComponent,
+    KeysOfObjectPipe,
   ],
   imports: [
     BrowserModule,
