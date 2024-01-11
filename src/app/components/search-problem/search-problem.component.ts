@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ProblemAPI } from 'src/app/models/model';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { CodeforcesService } from 'src/app/services/codeforces.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { CodeforcesService } from 'src/app/services/codeforces.service';
   styleUrls: ['./search-problem.component.css'],
 })
 export class SearchProblemComponent {
-  readonly authService = inject(AuthService);
   readonly codeforcesService = inject(CodeforcesService);
   inputProblem = new FormControl('');
   @Output() emitter = new EventEmitter<ProblemAPI[] | null>();
