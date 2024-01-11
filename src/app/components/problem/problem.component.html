@@ -1,42 +1,33 @@
 <li class="problem-item">
-  <a
-    href="{{ link + '/' + contestId + '/' + id }}"
-    target="_blank"
-    class="problem-item__container"
+  <article
+    class="problem"
+    [ngClass]="isAccepted() && authService.isLogged() ? 'problem-accepted' : ''"
   >
-    <article
-      class="problem"
-      [ngClass]="
-        isAccepted() && authService.isLogged() ? 'problem-accepted' : ''
-      "
-    >
-      <header class="problem-header">
-        <div class="problem-id-container">
-          <span target="_blank" class="problem-id">{{ contestId + id }}</span>
-        </div>
-        <div class="problem-name-container">
-          <h3 class="problem-name">{{ name }}</h3>
-        </div>
-        <div
-          class="problem-add"
-          *ngIf="!isAccepted() && authService.isLogged()"
+    <header class="problem-header">
+      <div class="problem-id-container">
+        <a href="{{ link + '/' + contestId + '/' + id }}" target="_blank">
+          {{ contestId + id }}</a
         >
-          <button
-            [ngClass]="{ 'btn-remove': isAdded(), 'btn-add': !isAdded() }"
-            class="btn-action"
-            (click)="handleAction()"
-          >
-            {{ isAdded() ? "Remove" : "Add" }}
-          </button>
-        </div>
-      </header>
-      <section class="problem-content">
-        <p class="problem-difficulty">Difficulty: {{ difficulty }}</p>
-        <div class="tags-problem">
-          <div class="spoiler"></div>
-          <span *ngFor="let tag of tags"> {{ tag }}, </span>
-        </div>
-      </section>
-    </article>
-  </a>
+      </div>
+      <div class="problem-name-container">
+        <h3 class="problem-name">{{ name }}</h3>
+      </div>
+      <div class="problem-add" *ngIf="!isAccepted() && authService.isLogged()">
+        <button
+          [ngClass]="{ 'btn-remove': isAdded(), 'btn-add': !isAdded() }"
+          class="btn-action"
+          (click)="handleAction()"
+        >
+          {{ isAdded() ? "Remove" : "Add" }}
+        </button>
+      </div>
+    </header>
+    <section class="problem-content">
+      <p class="problem-difficulty">Difficulty: {{ difficulty }}</p>
+      <div class="tags-problem">
+        <div class="spoiler"></div>
+        <span *ngFor="let tag of tags"> {{ tag }}, </span>
+      </div>
+    </section>
+  </article>
 </li>
