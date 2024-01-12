@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ProblemAPI } from 'src/app/models/model';
 import { LoadingMessagesService } from 'src/app/services/loading-messages/loading-messages.service';
 import { ProblemSetService } from 'src/app/services/problem-set/problem-set.service';
