@@ -1,11 +1,10 @@
-<!-- <header class="header-container">
-  <h1 class="app-title">{{ title }}</h1>
-</header> -->
-
 <main class="main-container">
-  <app-filter-codeforces
-    (emitter)="setProblems($event)"
-  ></app-filter-codeforces>
+  <section class="main-container__search">
+    <app-search-problem (emitter)="setProblems($event)"></app-search-problem>
+    <app-filter-codeforces
+      (emitter)="setProblems($event)"
+    ></app-filter-codeforces>
+  </section>
 
   <section class="problems-container">
     <ng-template
@@ -39,7 +38,27 @@
       "
       class="problems-container__no-problems"
     >
-      No problems found
+      <span
+        [ngStyle]="{
+        'fontWeight': 'bold',
+      }"
+        >No problems found</span
+      >
+
+      <p
+        *ngIf="this.problemSetService.error()"
+        [ngStyle]="{
+          display: 'flex',
+          'flex-direction': 'column',
+          'align-items': 'center',
+          'justify-content': 'center',
+          gap: '1rem'
+        }"
+      >
+        <span>{{ this.problemSetService.error() }}</span>
+
+        <span> Please try again later </span>
+      </p>
     </div>
 
     <section

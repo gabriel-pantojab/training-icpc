@@ -5,11 +5,8 @@
   >
     <header class="problem-header">
       <div class="problem-id-container">
-        <a
-          href="{{ link + '/' + contestId + '/' + id }}"
-          target="_blank"
-          class="problem-link"
-          >{{ contestId + id }}</a
+        <a href="{{ link + '/' + contestId + '/' + id }}" target="_blank">
+          {{ contestId + id }}</a
         >
       </div>
       <div class="problem-name-container">
@@ -28,6 +25,7 @@
     <section class="problem-content">
       <p class="problem-difficulty">Difficulty: {{ difficulty }}</p>
       <div class="tags-problem">
+        <div class="spoiler"></div>
         <span *ngFor="let tag of tags"> {{ tag }}, </span>
       </div>
     </section>

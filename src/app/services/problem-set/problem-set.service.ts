@@ -17,18 +17,25 @@ export class ProblemSetService {
   });
   countPages = signal<number>(0);
   page = signal<number>(1);
+  error = signal<string | null>(null);
 
   constructor(private codeforcesService: CodeforcesService) {}
 
   async loadDefaultProblems() {
-    this.setProblems(null);
-    const problems =
-      await this.codeforcesService.getProblemsByTagsAndDifficulty({
-        tags: [],
-        minDifficulty: 800,
-        maxDifficulty: 3500,
-      });
-    this.setProblems(problems);
+    try {
+      this.error.set(null);
+      this.setProblems(null);
+      const problems =
+        await this.codeforcesService.getProblemsByTagsAndDifficulty({
+          tags: [],
+          minDifficulty: 800,
+          maxDifficulty: 3500,
+        });
+      this.setProblems(problems);
+    } catch (error: any) {
+      this.setProblems([]);
+      this.error.set(error.message);
+    }
   }
 
   setProblems(problems: ProblemAPI[] | null) {

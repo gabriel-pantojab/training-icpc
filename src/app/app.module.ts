@@ -24,6 +24,8 @@ import { loginGuard } from './guards/login.guard';
 import { SortProblemsDatePipe } from './pipes/sort-problems-date/sort-problems-date.pipe';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { KeysOfObjectPipe } from './pipes/keys-of-object/keys-of-object.pipe';
+import { SearchProblemComponent } from './components/search-problem/search-problem.component';
+import { SearchIconComponent } from './components/icons/search-icon/search-icon.component';
 
 const routes: Routes = [
   {
@@ -54,6 +56,8 @@ const routes: Routes = [
     SortProblemsDatePipe,
     UserCardComponent,
     KeysOfObjectPipe,
+    SearchProblemComponent,
+    SearchIconComponent,
   ],
   imports: [
     BrowserModule,

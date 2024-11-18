@@ -83,4 +83,55 @@ export class CodeforcesService {
     if (minDifficulty > maxDifficulty)
       throw new Error('Min difficulty must be less than max difficulty');
   }
+
+  async searchProblemById(id: string): Promise<ProblemAPI[]> {
+    id = id.toUpperCase();
+    const response = await fetch(`${this.API_URL}/problemset.problems?`);
+    const data = await response.json();
+    if (data.status !== 'OK') throw new Error('Codeforces API error');
+    const problems: ProblemAPI[] = data.result.problems;
+    let problemsMatching: ProblemAPI[] = problems.filter((problem) => {
+      const idP = problem.contestId + problem.index;
+      return idP.includes(id);
+    });
+    problemsMatching = problemsMatching.sort((a, b) => {
+      const idA = a.contestId + a.index;
+      const idB = b.contestId + b.index;
+      let deltaA = 0,
+        deltaB = 0;
+      for (let i = 0; i < id.length; i++) {
+        if (idA[i] !== id[i]) deltaA++;
+        if (idB[i] !== id[i]) deltaB++;
+      }
+      deltaA += Math.abs(idA.length - id.length);
+      deltaB += Math.abs(idB.length - id.length);
+      return deltaA - deltaB;
+    });
+    return problemsMatching;
+  }
+
+  async searchProblemByName(name: string): Promise<ProblemAPI[]> {
+    name = name.toLowerCase();
+    const response = await fetch(`${this.API_URL}/problemset.problems?`);
+    const data = await response.json();
+    if (data.status !== 'OK') throw new Error('Codeforces API error');
+    const problems: ProblemAPI[] = data.result.problems;
+    let problemsMatching = problems.filter((problem) =>
+      problem.name.toLowerCase().includes(name)
+    );
+    problemsMatching = problemsMatching.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      let deltaA = 0,
+        deltaB = 0;
+      for (let i = 0; i < name.length; i++) {
+        if (nameA[i] !== name[i]) deltaA++;
+        if (nameB[i] !== name[i]) deltaB++;
+      }
+      deltaA += Math.abs(nameA.length - name.length);
+      deltaB += Math.abs(nameB.length - name.length);
+      return deltaA - deltaB;
+    });
+    return problemsMatching;
+  }
 }
