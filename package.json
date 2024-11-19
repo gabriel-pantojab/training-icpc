@@ -20,10 +20,10 @@
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@angular/router": "^17.3.12",
     "@ngrx/store": "18.1.1",
-    "@sweetalert2/ngx-sweetalert2": "^12.2.0",
-    "firebase": "^10.4.0",
+    "@sweetalert2/ngx-sweetalert2": "12.4.0",
+    "firebase": "11.0.2",
     "rxjs": "~7.8.0",
-    "sweetalert2": "^11.7.28",
+    "sweetalert2": "11.14.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
