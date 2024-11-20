@@ -9,20 +9,22 @@ import { provideStore } from '@ngrx/store';
 import { routes } from './app.routes';
 import { todosReducer } from './state';
 
+console.log(import.meta.env.NG_APP_FIREBASE_PROJECT_ID);
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideFirebaseApp(() =>
       initializeApp({
-        projectId: 'training-icpc',
-        appId: '1:332791973283:web:821c40fcf6598c7878c616',
-        storageBucket: 'training-icpc.appspot.com',
-        apiKey: 'AIzaSyCyDrhYWQgmym3_Pw3zZUuT6kUmWZW0e58',
-        authDomain: 'training-icpc.firebaseapp.com',
-        messagingSenderId: '332791973283',
-        measurementId: 'G-DZRRK3MP28',
-        databaseURL: 'https://training-icpc-default-rtdb.firebaseio.com/',
+        projectId: import.meta.env.NG_APP_FIREBASE_PROJECT_ID,
+        appId: import.meta.env.NG_APP_FIREBASE_APP_ID,
+        storageBucket: import.meta.env.NG_APP_FIREBASE_STORAGE_BUCKET,
+        apiKey: import.meta.env.NG_APP_FIREBASE_API_KEY,
+        authDomain: import.meta.env.NG_APP_FIREBASE_AUTH_DOMAIN,
+        messagingSenderId: import.meta.env.NG_APP_FIREBASE_MESSAGING_SENDER_ID,
+        measurementId: import.meta.env.NG_APP_FIREBASE_MEASUREMENT_ID,
+        databaseURL: import.meta.env.NG_APP_FIREBASE_DATABASE_URL,
       })
     ),
     provideAuth(() => getAuth()),
