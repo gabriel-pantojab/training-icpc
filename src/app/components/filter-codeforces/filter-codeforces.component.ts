@@ -1,11 +1,19 @@
 import { Component, EventEmitter, Output, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ProblemAPI } from 'src/app/models/model';
 import { CodeforcesService } from 'src/app/services/codeforces.service';
 import Swal from 'sweetalert2';
+import { TagComponent } from '../tag/tag.component';
 
 @Component({
   selector: 'app-filter-codeforces',
+  standalone: true,
+  imports: [ReactiveFormsModule, TagComponent],
   templateUrl: './filter-codeforces.component.html',
   styleUrls: ['./filter-codeforces.component.css'],
 })

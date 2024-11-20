@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tag',
+  standalone: true,
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.css'],
 })

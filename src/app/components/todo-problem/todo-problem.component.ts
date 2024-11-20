@@ -7,6 +7,7 @@ import { TodosPageActions } from 'src/app/state';
 
 @Component({
   selector: 'app-todo-problem',
+  standalone: true,
   templateUrl: './todo-problem.component.html',
   styleUrls: ['./todo-problem.component.css'],
 })

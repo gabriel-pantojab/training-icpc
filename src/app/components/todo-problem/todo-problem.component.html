@@ -1,8 +1,5 @@
 <li class="item-todo-problem">
-  <article
-    [ngClass]="problem.status === accepted ? 'accepted' : ''"
-    class="todo-problem"
-  >
+  <article [class.accepted]="problem.status === accepted" class="todo-problem">
     <section class="todo-problem__info">
       <header class="todo-problem__header">
         <h3 class="todo-problem__name">{{ problem.name }}</h3>
@@ -13,7 +10,9 @@
       <section class="todo-problem__details">
         <p>Difficulty: {{ problem.difficulty }}</p>
         <div class="tags-problem">
-          <span *ngFor="let tag of problem.tags"> {{ tag }}, </span>
+          @for (tag of problem.tags; track $index) {
+          <span> {{ tag }}, </span>
+          }
         </div>
       </section>
     </section>

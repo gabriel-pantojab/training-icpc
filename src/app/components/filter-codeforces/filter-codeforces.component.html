@@ -10,9 +10,9 @@
       <div class="max-min-difficulty">
         <div
           class="minDifficulty"
-          [ngClass]="{
-            'error-difficulty': filterForm.get('minDifficulty')?.hasError('min')
-          }"
+          [class.error-difficulty]="
+            filterForm.get('minDifficulty')?.hasError('min')
+          "
         >
           <input
             id="min-difficulty"
@@ -21,19 +21,16 @@
             min="800"
             max="3600"
           />
-          <span
-            *ngIf="filterForm.get('minDifficulty')?.hasError('min')"
-            class="error-difficulty-message"
-          >
-            Min value is 800
-          </span>
+          @if(filterForm.get('minDifficulty')?.hasError('min')) {
+          <span class="error-difficulty-message"> Min value is 800 </span>
+          }
         </div>
         -
         <div
           class="maxDifficulty"
-          [ngClass]="{
-            'error-difficulty': filterForm.get('maxDifficulty')?.hasError('max')
-          }"
+          [class.error-difficulty]="
+            filterForm.get('maxDifficulty')?.hasError('max')
+          "
         >
           <input
             id="max-difficulty"
@@ -42,23 +39,17 @@
             min="800"
             max="3500"
           />
-          <span
-            *ngIf="filterForm.get('maxDifficulty')?.hasError('max')"
-            class="error-difficulty-message"
-          >
-            Max value is 3600
-          </span>
+          @if(filterForm.get('maxDifficulty')?.hasError('max')) {
+          <span class="error-difficulty-message"> Max value is 3600 </span>
+          }
         </div>
       </div>
     </div>
 
     <div class="list-tags">
-      <app-tag
-        *ngFor="let tag of tagList()"
-        [name]="tag"
-        (removeEvent)="removeTag($event)"
-      >
-      </app-tag>
+      @for(tag of tagList(); track tag) {
+      <app-tag [name]="tag" (removeEvent)="removeTag($event)"> </app-tag>
+      }
     </div>
 
     <div class="tags">

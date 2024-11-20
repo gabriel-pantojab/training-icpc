@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
     provideStore({
-      todoState: todosReducer,
+      todosState: todosReducer,
     }),
   ],
 };
