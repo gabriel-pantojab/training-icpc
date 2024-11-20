@@ -1,12 +1,16 @@
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { Problem, ProblemStatus } from 'src/app/models/model';
 import { TodosSelectors } from 'src/app/state';
 import { formatDateString } from 'src/app/utils/utils';
+import { TodoProblemComponent } from '../todo-problem/todo-problem.component';
 
 @Component({
   selector: 'app-problem-list-date',
+  standalone: true,
+  imports: [NgClass, AsyncPipe, TodoProblemComponent],
   templateUrl: './problem-list-date.component.html',
   styleUrls: ['./problem-list-date.component.css'],
 })
@@ -51,7 +55,7 @@ export class ProblemListDateComponent implements OnInit {
       });
   }
 
-  getClasses(): string {
+  get getClasses(): string {
     let classes = '';
     if (!this.showProblems) classes += 'hidden ';
     if (this.pendingProblems > 0) classes += 'pedding-problems ';

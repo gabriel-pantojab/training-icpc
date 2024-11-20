@@ -1,43 +1,34 @@
 <main class="main-container">
   <section class="main-container__search">
     <app-search-problem (emitter)="setProblems($event)"></app-search-problem>
+
     <app-filter-codeforces
       (emitter)="setProblems($event)"
     ></app-filter-codeforces>
   </section>
 
   <section class="problems-container">
-    <ng-template
-      [ngIf]="
-        problemSetService.renderProblems() &&
-        problemSetService.renderProblems()?.length
-      "
-    >
-      <ul class="problem-list">
-        <app-problem
-          *ngFor="let problem of problemSetService.renderProblems()"
-          [contestId]="problem.contestId + ''"
-          [id]="problem.index"
-          [name]="problem.name"
-          [tags]="problem.tags"
-          [difficulty]="problem.rating ?? -1"
-        ></app-problem>
-      </ul>
-    </ng-template>
-    <div
-      *ngIf="!problemSetService.renderProblems()"
-      class="problems-container__loading"
-    >
+    @if( problemSetService.renderProblems() &&
+    problemSetService.renderProblems()?.length) {
+    <ul class="problem-list">
+      @for(problem of problemSetService.renderProblems(); track $index) {
+      <app-problem
+        [contestId]="problem.contestId + ''"
+        [id]="problem.index"
+        [name]="problem.name"
+        [tags]="problem.tags"
+        [difficulty]="problem.rating ?? -1"
+      ></app-problem>
+      }
+    </ul>
+    } @if(!problemSetService.renderProblems()) {
+    <div class="problems-container__loading">
       <app-loading></app-loading>
       <p>"{{ loadingMessage }}"</p>
     </div>
-    <div
-      *ngIf="
-        problemSetService.renderProblems() &&
-        problemSetService.renderProblems()?.length === 0
-      "
-      class="problems-container__no-problems"
-    >
+    } @if(problemSetService.renderProblems() &&
+    problemSetService.renderProblems()?.length === 0) {
+    <div class="problems-container__no-problems">
       <span
         [ngStyle]="{
         'fontWeight': 'bold',
@@ -45,8 +36,8 @@
         >No problems found</span
       >
 
+      @if(this.problemSetService.error()) {
       <p
-        *ngIf="this.problemSetService.error()"
         [ngStyle]="{
           display: 'flex',
           'flex-direction': 'column',
@@ -59,16 +50,12 @@
 
         <span> Please try again later </span>
       </p>
+      }
     </div>
-
-    <section
-      *ngIf="
-        problemSetService.renderProblems() &&
-        problemSetService.renderProblems()?.length &&
-        problemSetService.countPages() > 1
-      "
-      class="pagination-container"
-    >
+    } @if(problemSetService.renderProblems() &&
+    problemSetService.renderProblems()?.length && problemSetService.countPages()
+    > 1) {
+    <section class="pagination-container">
       <button
         class="pagination-container__button"
         (click)="prevPage()"
@@ -76,22 +63,22 @@
       >
         Previous
       </button>
+      @if(problemSetService.renderProblems() &&
+      problemSetService.renderProblems()?.length) {
       <button
         class="pagination-container__button"
-        *ngIf="
-          problemSetService.renderProblems() &&
-          problemSetService.renderProblems()?.length
-        "
         (click)="nextPage()"
         [disabled]="problemSetService.page() === problemSetService.countPages()"
       >
         Next
       </button>
+      }
 
       <p class="pagination-container__page">
         Page {{ problemSetService.page() }} of
         {{ problemSetService.countPages() }}
       </p>
     </section>
+    }
   </section>
 </main>

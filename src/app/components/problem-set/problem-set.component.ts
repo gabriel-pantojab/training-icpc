@@ -1,10 +1,23 @@
+import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ProblemAPI } from 'src/app/models/model';
 import { LoadingMessagesService } from 'src/app/services/loading-messages/loading-messages.service';
 import { ProblemSetService } from 'src/app/services/problem-set/problem-set.service';
+import { SearchProblemComponent } from '../search-problem/search-problem.component';
+import { FilterCodeforcesComponent } from '../filter-codeforces/filter-codeforces.component';
+import { ProblemComponent } from '../problem/problem.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-problem-set',
+  standalone: true,
+  imports: [
+    NgStyle,
+    SearchProblemComponent,
+    FilterCodeforcesComponent,
+    ProblemComponent,
+    LoadingComponent,
+  ],
   templateUrl: './problem-set.component.html',
   styleUrls: ['./problem-set.component.css'],
 })

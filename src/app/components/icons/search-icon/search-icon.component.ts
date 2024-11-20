@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-icon',
+  standalone: true,
   templateUrl: './search-icon.component.html',
   styleUrls: ['./search-icon.component.css'],
 })

@@ -2,7 +2,7 @@
   <header
     (click)="toggleShowProblems()"
     class="problem-list-date__header"
-    [ngClass]="getClasses()"
+    [ngClass]="getClasses"
   >
     <div class="problem-list-date__header-info">
       <h3>Date: {{ date }}</h3>
@@ -22,15 +22,19 @@
       </div>
     </div>
     <div class="problem-list-date__header-count">
-      <h5 *ngIf="!pendingProblems">Total: {{ totalProblems }}</h5>
-      <h5 *ngIf="pendingProblems">Accepted: {{ acceptedProblems }}</h5>
-      <h5 *ngIf="pendingProblems">Pending: {{ pendingProblems }}</h5>
+      @if(!pendingProblems) {
+      <h5>Total: {{ totalProblems }}</h5>
+      } @if(pendingProblems) {
+      <h5>Accepted: {{ acceptedProblems }}</h5>
+      <h5>Pending: {{ pendingProblems }}</h5>
+      }
     </div>
   </header>
-  <ul class="my-problems-list" *ngIf="showProblems">
-    <app-todo-problem
-      *ngFor="let item of problems$ | async"
-      [problem]="item"
-    ></app-todo-problem>
+  @if(showProblems) {
+  <ul class="my-problems-list">
+    @for (item of problems$ | async; track $index) {
+    <app-todo-problem [problem]="item"></app-todo-problem>
+    }
   </ul>
+  }
 </section>

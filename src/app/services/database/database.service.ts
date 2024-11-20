@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Database, ref, set, update } from '@angular/fire/database';
-import { get, child } from 'firebase/database';
+import { get, child } from '@angular/fire/database';
 import { Problem, ProblemStatus } from 'src/app/models/model';
 import { State } from 'src/app/state';
 

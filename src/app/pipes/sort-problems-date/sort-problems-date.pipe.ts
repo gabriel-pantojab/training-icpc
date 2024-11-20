@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'sortProblemsDate',
+  standalone: true,
 })
 export class SortProblemsDatePipe implements PipeTransform {
   transform(dates: string[]): string[] {

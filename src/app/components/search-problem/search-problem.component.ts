@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ProblemAPI } from 'src/app/models/model';
 import { CodeforcesService } from 'src/app/services/codeforces.service';
+import { SearchIconComponent } from '../icons/search-icon/search-icon.component';
 
 @Component({
   selector: 'app-search-problem',
+  standalone: true,
+  imports: [ReactiveFormsModule, SearchIconComponent],
   templateUrl: './search-problem.component.html',
   styleUrls: ['./search-problem.component.css'],
 })
