@@ -9,8 +9,6 @@ import { provideStore } from '@ngrx/store';
 import { routes } from './app.routes';
 import { todosReducer } from './state';
 
-console.log(import.meta.env.NG_APP_FIREBASE_PROJECT_ID);
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

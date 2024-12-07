@@ -1,16 +1,21 @@
 {
   "hosting": {
-    "source": ".",
+    "site" : "training-icpc",
+    "public": "dist/random-problem/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "frameworksBackend": {
-      "region": "us-central1"
+      "region": "us-east1"
     }
   },
   "database": {
     "rules": "database.rules.json"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }
