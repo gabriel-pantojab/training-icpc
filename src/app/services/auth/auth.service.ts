@@ -53,12 +53,12 @@ export class AuthService {
   async signInGoogle() {
     try {
       await signInWithPopup(this.auth, this.googleProvider);
-      await this.createUserData();
       Swal.fire({
         icon: 'success',
         title: 'Success!',
         text: 'You have successfully signed in.',
       });
+      await this.createUserData();
     } catch (error) {
       if (error instanceof FirebaseError) {
         if (error.code !== 'auth/cancelled-popup-request') {

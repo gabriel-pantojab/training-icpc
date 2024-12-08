@@ -1,14 +1,14 @@
 {
   "hosting": {
-    "site" : "training-icpc",
+    "site": "training-icpc",
     "public": "dist/random-problem/browser",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "frameworksBackend": {
       "region": "us-east1"
+    },
+    "github": {
+      "repo": "gabriel-pantojab/training-icpc",
+      "branch": "dev"
     }
   },
   "database": {
