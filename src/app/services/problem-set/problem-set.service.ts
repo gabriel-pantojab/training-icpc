@@ -1,10 +1,8 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { ProblemAPI } from 'src/app/models/model';
+import { ProblemAPI } from '@/models/model';
 import { CodeforcesService } from '../codeforces.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProblemSetService {
   problems = signal<ProblemAPI[] | null>([]);
   renderProblems = computed<ProblemAPI[] | null>(() => {

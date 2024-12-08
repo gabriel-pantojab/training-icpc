@@ -1,0 +1,38 @@
+<li class="problem-item">
+  <article
+    class="problem"
+    [class.problem-accepted]="isAccepted() && authService.isLogged()"
+  >
+    <header class="problem-header">
+      <div class="problem-id-container">
+        <a href="{{ link + '/' + contestId + '/' + id }}" target="_blank">
+          {{ contestId + id }}</a
+        >
+      </div>
+      <div class="problem-name-container">
+        <h3 class="problem-name">{{ name }}</h3>
+      </div>
+      @if(!isAccepted() && authService.isLogged()) {
+      <div class="problem-add">
+        <button
+          [class.btn-remove]="isAdded()"
+          [class.btn-add]="!isAdded()"
+          class="btn-action"
+          (click)="handleAction()"
+        >
+          {{ isAdded() ? "Remove" : "Add" }}
+        </button>
+      </div>
+      }
+    </header>
+    <section class="problem-content">
+      <p class="problem-difficulty">Difficulty: {{ difficulty }}</p>
+      <div class="tags-problem">
+        <div class="spoiler"></div>
+        @for(tag of tags; track tag) {
+        <span> {{ tag }}, </span>
+        }
+      </div>
+    </section>
+  </article>
+</li>

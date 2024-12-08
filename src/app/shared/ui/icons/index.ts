@@ -1,0 +1,1 @@
+export * from "./search-icon/search-icon.component"
