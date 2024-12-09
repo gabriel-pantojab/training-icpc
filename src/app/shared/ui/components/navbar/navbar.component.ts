@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserCardComponent } from '../user-card/user-card.component';
