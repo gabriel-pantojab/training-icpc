@@ -1,8 +1,4 @@
-.navbar__user-info.hidden {
-  display: none;
-}
-
-.navbar__user-info.visible {
+.navbar__user-info {
   position: absolute;
   z-index: 999;
   top: 33px;

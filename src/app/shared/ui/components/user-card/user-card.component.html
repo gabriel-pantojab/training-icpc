@@ -7,8 +7,13 @@
       alt="user image"
     />
   </div>
-  }
-  <section class="navbar__user-info {{ getClassesUserInfo() }}" id="popup-info">
+  } @if(visibleButtonAuth()) {
+  <section
+    appClickOutSide
+    (clickOutSideAction)="closeUserInfo()"
+    class="navbar__user-info"
+    id="popup-info"
+  >
     @if(logged) {
     <p class="user-name">
       {{ authService.user?.displayName }}
@@ -18,4 +23,5 @@
       {{ authService.user ? "Logout" : "Login with google" }}
     </button>
   </section>
+  }
 </section>
