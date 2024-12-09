@@ -7,7 +7,11 @@
       alt="user image"
     />
   </div>
-  } @if(visibleButtonAuth()) {
+  } @else {
+  <button (click)="handleAuth()" class="navbar__button-auth">
+    Login with Google
+  </button>
+  } @if(logged && visibleButtonAuth()) {
   <section
     appClickOutSide
     (clickOutSideAction)="closeUserInfo()"
@@ -19,9 +23,7 @@
       {{ authService.user?.displayName }}
     </p>
     }
-    <button (click)="handleAuth()" class="navbar__button-auth">
-      {{ authService.user ? "Logout" : "Login with google" }}
-    </button>
+    <button (click)="handleAuth()" class="navbar__button-auth">Logout</button>
   </section>
   }
 </section>
