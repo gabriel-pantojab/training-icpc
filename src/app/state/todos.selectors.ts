@@ -1,7 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { State, todosFeatureKey } from './todos.reducer';
+import { State } from './todos.state';
 
-const todosState = createFeatureSelector<State>(todosFeatureKey);
+export const MY_PROPLEMS_FEATURE_KEY = 'myProblems' as const;
+
+const todosState = createFeatureSelector<State>(MY_PROPLEMS_FEATURE_KEY);
 export const problems = createSelector(todosState, (todosState) => todosState);
 
 export const problemsDate = (date: string) => {

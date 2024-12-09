@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Problem } from '../models/model';
-import { State } from './todos.reducer';
+import { State } from './todos.state';
 
 export const init = createAction('[My Problems Page] Init');
 

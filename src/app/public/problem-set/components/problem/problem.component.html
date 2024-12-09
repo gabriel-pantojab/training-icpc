@@ -29,7 +29,7 @@
       <p class="problem-difficulty">Difficulty: {{ difficulty }}</p>
       <div class="tags-problem">
         <div class="spoiler"></div>
-        @for(tag of tags; track tag) {
+        @for(tag of tags; track $index) {
         <span> {{ tag }}, </span>
         }
       </div>

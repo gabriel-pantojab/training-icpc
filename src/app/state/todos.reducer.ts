@@ -1,18 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { TodosPageActions } from '.';
-import { Problem, ProblemStatus } from '../models/model';
+import { ProblemStatus } from '../models/model';
 import { currentDateCompact } from '../utils/utils';
-
-export const todosFeatureKey = 'todosState';
-
-export interface State {
-  [key: string]: TodosState;
-}
-export interface TodosState {
-  problems: Problem[];
-}
-
-const initialState: State = {};
+import { initialState } from './todos.state';
 
 export const todosReducer = createReducer(
   initialState,

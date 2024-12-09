@@ -33,11 +33,12 @@ export class ProblemComponent implements OnInit {
   authService = inject(AuthService);
   db = inject(DatabaseService);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store<{ todosState: State }>) {}
 
   ngOnInit(): void {
     this.todoProblem$.subscribe(
       (dayProblems: { [key: string]: TodosState }) => {
+        if (!dayProblems) return;
         Object.values(dayProblems).forEach((dayProblem: TodosState) => {
           dayProblem.problems.forEach((p: Problem) => {
             if (p.id === this.contestId + this.id) {

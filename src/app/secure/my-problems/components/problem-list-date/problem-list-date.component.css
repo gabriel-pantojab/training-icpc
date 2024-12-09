@@ -1,0 +1,64 @@
+.problem-list-date {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.problem-list-date__header {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.problem-list-date__header-info {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #ccc; */
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.problem-list-date__header-count {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  padding-top: 0;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  border-radius: 0.5rem;
+}
+
+.pedding-problems {
+  background-color: tomato;
+}
+
+.accepted-problems {
+  background-color: #d4edc9;
+}
+
+.rotate > svg {
+  transform: rotate(180deg);
+}
+
+.my-problems-list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
